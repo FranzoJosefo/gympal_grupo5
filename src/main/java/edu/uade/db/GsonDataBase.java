@@ -1,4 +1,4 @@
-package edu.uade.service;
+package edu.uade.db;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,13 +16,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-public class ApiService { //TODO todo esto se deberia llamar DB.
-	
-	private ApiService() {
-       
+public class GsonDataBase { //TODO todo esto se deberia llamar DB.
+
+	private GsonDataBase() {
 	}
 
-	public static <T> void grabar(List<T> list, String fileName) {
+	public static <T> void grabarBulk(List<T> list, String fileName) {
 		File archivo = new File(fileName);
 		FileWriter fileWriter;
 		BufferedWriter bwEscritor;
@@ -41,7 +40,7 @@ public class ApiService { //TODO todo esto se deberia llamar DB.
 		}
 	}
 
-	public static <T> List<T> leer(Class<T> dtoClass, String fileName) {
+	public static <T> List<T> leerBulk(Class<T> dtoClass, String fileName) {
 		List<T> dtos = new ArrayList<T>();
 		String cadena;
 		File archivo = new File(fileName);

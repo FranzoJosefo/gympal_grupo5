@@ -1,4 +1,4 @@
-package edu.uade.service;
+package edu.uade.db;
 
 public enum DataFilesNames {
 
