@@ -5,6 +5,7 @@ import edu.uade.enums.TipoAccionista;
 public class AccionDto {
 
     private int accionId;
+    
     private TipoAccionista tipoAccionista;
     private float precio;
 

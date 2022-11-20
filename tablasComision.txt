@@ -1,0 +1,1 @@
+[{"comisionTipo1":5,"comisionTipo2":5,"comisionTipo3":4,"segmentoSocio":"NORMAL","estados":{}},{"comisionTipo1":4,"comisionTipo2":4,"comisionTipo3":3,"segmentoSocio":"BRONCE","estados":{}},{"comisionTipo1":3,"comisionTipo2":3,"comisionTipo3":2,"segmentoSocio":"ORO","estados":{}},{"comisionTipo1":2,"comisionTipo2":2,"comisionTipo3":1,"segmentoSocio":"PLATINO","estados":{}}]

@@ -16,7 +16,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-public class ApiService {
+public class ApiService { //TODO todo esto se deberia llamar DB.
 	
 	private ApiService() {
        

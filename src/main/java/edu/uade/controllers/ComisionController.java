@@ -1,9 +1,7 @@
 package edu.uade.controllers;
 
-import edu.uade.DTO.TablaComisionDto;
 import edu.uade.enums.DataFilesNames;
 import edu.uade.enums.SegmentoSocio;
-import edu.uade.models.TablaComision;
 import edu.uade.service.ApiService;
 
 import java.util.ArrayList;

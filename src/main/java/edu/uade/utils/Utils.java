@@ -1,7 +1,7 @@
 package edu.uade.utils;
 
 import edu.uade.DTO.*;
-import edu.uade.models.*;
+import edu.uade.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
