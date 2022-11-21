@@ -9,6 +9,7 @@ import edu.uade.shared.base.messaging.MessageHandler;
 
 public class StateLogin extends State {
     boolean loginFailed = false;
+    ViewLogin view;
 
     public StateLogin(MessageBus messageBus) {
         super(messageBus);
@@ -16,16 +17,15 @@ public class StateLogin extends State {
         getMessageBus().subscribe(Login.FAILED, new MessageHandler<>((MessageLoginFailed message) -> {
             loginFailed = true;
         }));
+        view = new ViewLogin(getMessageBus());
     }
 
     @Override
     public void run() {
-        ViewLogin view = new ViewLogin(getMessageBus());
         if (loginFailed) {
             view.setErrorMessage("Usuario y/o contraseña incorrectos");
             loginFailed = false;
         }
         view.show();
-        view.setErrorMessage(null);
     }
 }

@@ -35,6 +35,7 @@ public class ViewLogin extends ViewBase {
                 .addOption("Cancelar", this::back).get();
         menu.show();
         console.print(errorMessage);
+        errorMessage = null;
         UserInputInteger input = new UserInputInteger(console);
         menu.chooseOption(input.read("Ingrese la opción deseada:", "Opción incorrecta", 1, menu.optionCount()));
     }
@@ -52,7 +53,11 @@ public class ViewLogin extends ViewBase {
     }
 
     void submit() {
-        getMessageBus().sendMessage(new MessageLoginDetailsIntroduced(userName, password));
+        if (userName != null && userName.length() > 0 && password != null && password.length() > 0) {
+            getMessageBus().sendMessage(new MessageLoginDetailsIntroduced(userName, password));
+        } else {
+            setErrorMessage("Por favor, introduzca su usuario y contraseña antes de intentar enviar el formulario");
+        }
     }
 
     void back() {

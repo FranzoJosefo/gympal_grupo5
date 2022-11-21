@@ -29,7 +29,7 @@ public class Login extends ComponentBase {
         Result loginResult = controller.doLogin(credentials);
         IMessage message;
         if (loginResult == Result.SUCCESS) {
-            message = new MessageLoginSuccess();
+            message = new MessageLoginSuccess(credentials.getUser());
         } else {
             message = new MessageLoginFailed();
         }
