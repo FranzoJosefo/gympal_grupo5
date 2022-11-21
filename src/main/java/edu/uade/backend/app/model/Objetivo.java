@@ -2,9 +2,9 @@ package edu.uade.backend.app.model;
 
 import edu.uade.backend.app.model.dto.ObjetivoDto;
 import edu.uade.backend.app.model.enums.ObjetivoTipo;
-import edu.uade.backend.app.model.strategies.IEntrenamientoStrategy;
 
 import java.time.DayOfWeek;
+import java.util.List;
 
 public class Objetivo {
     private Rutina rutina;
@@ -47,13 +47,13 @@ public class Objetivo {
     public ObjetivoDto toDto() {
         ObjetivoDto dto = new ObjetivoDto();
         dto.setObjetivoTipo(getObjetivoTipo());
-//        dto.setRutina(getRutina().toDto());
+        dto.setRutina(getRutina().toDto());
         dto.setObjetivoCumplido(getObjetivoCumplido());
         dto.setPesoInicial(getPesoInicial());
         return dto;
     }
 
-    private void createRutina() {
+    private void createRutina(List<DayOfWeek> diasEntrenamiento) {
         //TODO magia RutinaFactory
         rutina = new Rutina(); //Por ahora
     }
