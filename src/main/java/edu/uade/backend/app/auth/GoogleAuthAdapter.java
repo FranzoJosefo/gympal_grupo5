@@ -11,6 +11,6 @@ public class GoogleAuthAdapter implements IAuthAdapter{
 
     @Override
     public Result registerUser(Credentials creds) {
-        return Result.SUCCESS;
+        return null;
     }
 }
