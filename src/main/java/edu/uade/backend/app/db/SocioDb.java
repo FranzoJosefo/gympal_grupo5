@@ -1,6 +1,6 @@
-package edu.uade.db;
+package edu.uade.backend.app.db;
 
-import edu.uade.model.dto.SocioDto;
+import edu.uade.backend.app.model.dto.SocioDto;
 
 import java.util.List;
 import java.util.Objects;

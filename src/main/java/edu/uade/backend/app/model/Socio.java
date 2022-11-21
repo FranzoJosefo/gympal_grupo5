@@ -1,7 +1,7 @@
-package edu.uade.model;
+package edu.uade.backend.app.model;
 
-import edu.uade.model.dao.SocioDao;
-import edu.uade.model.dto.SocioDto;
+import edu.uade.backend.app.model.dao.SocioDao;
+import edu.uade.backend.app.model.dto.SocioDto;
 
 public class Socio{
 

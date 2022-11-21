@@ -1,6 +1,6 @@
-package edu.uade.model.dto;
+package edu.uade.backend.app.model.dto;
 
-import edu.uade.model.enums.Sexo;
+import edu.uade.backend.app.model.enums.Sexo;
 
 public class SocioDto {
     String usuario;

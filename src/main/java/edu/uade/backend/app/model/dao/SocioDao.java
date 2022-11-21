@@ -1,7 +1,7 @@
-package edu.uade.model.dao;
+package edu.uade.backend.app.model.dao;
 
-import edu.uade.db.SocioDb;
-import edu.uade.model.dto.SocioDto;
+import edu.uade.backend.app.db.SocioDb;
+import edu.uade.backend.app.model.dto.SocioDto;
 
 public class SocioDao {
     private static final SocioDb db = SocioDb.getInstance();

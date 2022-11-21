@@ -1,8 +1,7 @@
-package edu.uade.controllers;
+package edu.uade.backend.app.controllers;
 
-import edu.uade.db.SocioDb;
-import edu.uade.model.Socio;
-import edu.uade.model.dto.SocioDto;
+import edu.uade.backend.app.model.dto.SocioDto;
+import edu.uade.backend.app.model.Socio;
 
 public class SocioController {
 

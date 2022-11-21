@@ -1,4 +1,4 @@
-package edu.uade.db;
+package edu.uade.backend.app.db;
 
 public enum DataFilesNames {
 

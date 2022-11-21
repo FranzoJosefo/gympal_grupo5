@@ -1,4 +1,7 @@
-package edu.uade.auth;
+package edu.uade.backend.app.auth;
+
+import edu.uade.backend.app.model.enums.Result;
+import edu.uade.backend.app.model.Credentials;
 
 public class GoogleAuthAdapter implements IAuthAdapter{
     @Override

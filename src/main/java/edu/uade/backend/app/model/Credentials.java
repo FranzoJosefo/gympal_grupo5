@@ -1,4 +1,4 @@
-package edu.uade.auth;
+package edu.uade.backend.app.model;
 
 public class Credentials {
     private String user;

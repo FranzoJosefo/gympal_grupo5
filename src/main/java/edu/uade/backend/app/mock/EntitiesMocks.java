@@ -1,4 +1,4 @@
-//package edu.uade.mock;
+//package edu.uade.backend.app.mock;
 //
 //import edu.uade.DTO.*;
 //import edu.uade.enums.*;
