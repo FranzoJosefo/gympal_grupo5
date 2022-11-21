@@ -1,5 +1,6 @@
 package edu.uade.frontend.app.views;
 
+import edu.uade.frontend.app.messages.MessageLoginDetailsIntroduced;
 import edu.uade.frontend.base.menus.MenuBuilder;
 import edu.uade.shared.app.events.Login;
 import edu.uade.shared.base.messaging.MessageBus;
@@ -17,7 +18,8 @@ public class ViewLogin extends ViewBase {
 
     ITextOutput console = new TextOutputConsole();
     String userName;
-    String userPass;
+    String password;
+    String errorMessage;
 
     public ViewLogin(MessageBus messageBus) {
         super(messageBus);
@@ -28,11 +30,11 @@ public class ViewLogin extends ViewBase {
         MenuBuilder builder = new MenuBuilder();
         Menu menu = builder.create("Inicio de sesión", console)
                 .addOption("Ingresar nombre de usuario" + ((userName != null && userName.length() > 0)? " (" + userName + ")" : ""), this::enterUsername)
-                .addOption("Ingresar contraseña" + ((userPass != null && userPass.length() > 0)? " (************)" : ""), this::enterPassword)
+                .addOption("Ingresar contraseña" + ((password != null && password.length() > 0)? " (************)" : ""), this::enterPassword)
                 .addOption("Enviar", this::submit)
                 .addOption("Cancelar", this::back).get();
         menu.show();
-
+        console.print(errorMessage);
         UserInputInteger input = new UserInputInteger(console);
         menu.chooseOption(input.read("Ingrese la opción deseada:", "Opción incorrecta", 1, menu.optionCount()));
     }
@@ -45,14 +47,19 @@ public class ViewLogin extends ViewBase {
 
     void enterPassword() {
         UserInputString input = new UserInputString(console);
-        userPass = input.read("Escriba su contraseña:", "Por favor, ingrese entre " + MIN_LENGTH + " y " + MAX_LENGTH + " caracteres.", MIN_LENGTH, MAX_LENGTH);
+        password = input.read("Escriba su contraseña:", "Por favor, ingrese entre " + MIN_LENGTH + " y " + MAX_LENGTH + " caracteres.", MIN_LENGTH, MAX_LENGTH);
         show();
     }
 
     void submit() {
+        getMessageBus().sendMessage(new MessageLoginDetailsIntroduced(userName, password));
     }
 
     void back() {
         getMessageBus().sendMessage(new MessageEvent(Login.Navigation.CANCELLED));
+    }
+
+    public void setErrorMessage(String message) {
+        errorMessage = message;
     }
 }

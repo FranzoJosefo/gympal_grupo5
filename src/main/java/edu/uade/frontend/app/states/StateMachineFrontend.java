@@ -1,5 +1,6 @@
 package edu.uade.frontend.app.states;
 
+import edu.uade.frontend.app.messages.MessageLoginDetailsIntroduced;
 import edu.uade.shared.app.events.Login;
 import edu.uade.shared.base.messaging.MessageBus;
 import edu.uade.shared.base.messaging.MessageHandler;
@@ -16,14 +17,22 @@ public class StateMachineFrontend extends StateMachine {
             transition(message.getEventId());
         });
         messageBus.subscribe(Shared.EVENT, eventMessageHandler);
+        messageBus.subscribe(Login.Navigation.LOGIN_DETAILS_INTRODUCED, new MessageHandler<>((MessageLoginDetailsIntroduced message) -> {
+            transition(message.getId());
+        }));
 
         IState stateStartApp = new StateApplicationStart(messageBus);
         IState stateLogin = new StateLogin(messageBus);
+        IState stateLoginInProgress = new StateLoginInProgress(messageBus);
+
         stateStartApp.addTransition(Login.Navigation.LOGIN_DETAILS_INPUT_STARTED, stateLogin);
         stateLogin.addTransition(Login.Navigation.CANCELLED, stateStartApp);
+        stateLogin.addTransition(Login.Navigation.LOGIN_DETAILS_INTRODUCED, stateLoginInProgress);
+        stateLoginInProgress.addTransition(Login.FAILED, stateLogin);
 
         registerState(stateStartApp);
         registerState(stateLogin);
+        registerState(stateLoginInProgress);
     }
 
     void transition(EnumGymPal<Integer> eventId) {
@@ -31,7 +40,6 @@ public class StateMachineFrontend extends StateMachine {
             IState newState = currentState.getTransition(eventId);
             if (newState != null && validStates.contains(newState)) {
                 currentState = newState;
-                currentState.run();
             }
         }
     }

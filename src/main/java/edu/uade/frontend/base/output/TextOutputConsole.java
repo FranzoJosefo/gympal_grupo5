@@ -4,6 +4,8 @@ public class TextOutputConsole implements ITextOutput {
 
     @Override
     public void print(String message) {
-        System.out.println(message);
+        if (message != null && message.length() > 0) {
+            System.out.println(message);
+        }
     }
 }

@@ -35,9 +35,7 @@ public class Menu implements IMenu {
 
     @Override
     public void show() {
-        if (name != null && name.length() > 0) {
-            console.print(name);
-        }
+        console.print(name);
         for (IOption option: options) {
             console.print("" + option.getId() + " - " + option.getName());
         }

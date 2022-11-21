@@ -23,6 +23,7 @@ public class UserInputInteger {
             userInput = input.nextInt();
         } catch (InputMismatchException ex) {
             userInput = min - 1;
+            input.nextLine();
         }
 
         if (userInput < min || userInput > max) {
