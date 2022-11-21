@@ -9,7 +9,6 @@ import edu.uade.shared.app.events.Login;
 import edu.uade.shared.app.events.Register;
 import edu.uade.shared.app.messages.MessageCreateSocio;
 import edu.uade.shared.app.messages.MessageLoginSuccess;
-import edu.uade.shared.app.messages.MessageRegisterSuccess;
 import edu.uade.shared.base.components.ComponentBase;
 import edu.uade.shared.base.messaging.MessageBus;
 import edu.uade.shared.base.messaging.MessageHandler;
