@@ -30,7 +30,8 @@ public class MaquinaDeEstadosGymPal extends MaquinaDeEstados {
         if (estadoActual != null) {
             IEstado nuevoEstado = estadoActual.getTransicion(identificadorEvento);
             if (nuevoEstado != null && estadosValidos.contains(nuevoEstado)) {
-                nuevoEstado.ejecutar();
+                estadoActual = nuevoEstado;
+                estadoActual.ejecutar();
             }
         }
     }
