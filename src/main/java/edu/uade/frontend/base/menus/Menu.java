@@ -20,6 +20,11 @@ public class Menu implements IMenu {
     }
 
     @Override
+    public int optionCount() {
+        return options.size();
+    }
+
+    @Override
     public void chooseOption(int optionId) {
         for (IOption option: options) {
             if (option.getId() == optionId) {

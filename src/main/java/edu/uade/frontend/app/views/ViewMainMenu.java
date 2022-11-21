@@ -1,5 +1,6 @@
 package edu.uade.frontend.app.views;
 
+import edu.uade.frontend.base.menus.MenuBuilder;
 import edu.uade.shared.app.events.General;
 import edu.uade.shared.app.events.Login;
 import edu.uade.shared.messaging.MessageBus;
@@ -12,9 +13,6 @@ import edu.uade.frontend.base.output.TextOutputConsole;
 import edu.uade.frontend.base.views.ViewBase;
 
 public class ViewMainMenu extends ViewBase {
-    final static int MENU_OPTION_LOGIN = 1;
-    final static int MENU_OPTION_REGISTER = 2;
-    final static int MENU_OPTION_EXIT = 3;
 
     ITextOutput console = new TextOutputConsole();
 
@@ -24,14 +22,15 @@ public class ViewMainMenu extends ViewBase {
 
     @Override
     public void show() {
-        Menu menu = new Menu(console, "Menú principal");
-        menu.addOption(new Option(MENU_OPTION_LOGIN, "Iniciar sesion", this::login));
-        menu.addOption(new Option(MENU_OPTION_REGISTER, "Registrarse", this::register));
-        menu.addOption(new Option(MENU_OPTION_EXIT, "Salir", this::exit));
+        MenuBuilder builder = new MenuBuilder();
+        Menu menu = builder.create("Menú principal", console)
+                .addOption("Iniciar sesion", this::login)
+                .addOption("Registrarse", this::register)
+                .addOption("Salir", this::exit).get();
         menu.show();
 
         UserInputInteger input = new UserInputInteger(console);
-        menu.chooseOption(input.read("Ingrese la opción deseada:", "Opción incorrecta", MENU_OPTION_LOGIN, MENU_OPTION_EXIT));
+        menu.chooseOption(input.read("Ingrese la opción deseada:", "Opción incorrecta", 1, menu.optionCount()));
     }
 
     void login() {
