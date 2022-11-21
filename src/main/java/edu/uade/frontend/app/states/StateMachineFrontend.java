@@ -8,8 +8,8 @@ import edu.uade.frontend.app.events.Shared;
 import edu.uade.frontend.app.messages.MessageEvent;
 import edu.uade.frontend.base.states.IState;
 
-public class StateMachineFronted extends StateMachine {
-    public StateMachineFronted(MessageBus messageBus) {
+public class StateMachineFrontend extends StateMachine {
+    public StateMachineFrontend(MessageBus messageBus) {
         super(messageBus);
 
         MessageHandler<MessageEvent> eventMessageHandler = new MessageHandler<MessageEvent>((MessageEvent message) -> {
