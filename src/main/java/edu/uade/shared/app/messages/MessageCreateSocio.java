@@ -5,11 +5,16 @@ import edu.uade.shared.app.events.Register;
 import edu.uade.shared.base.messaging.IMessage;
 import edu.uade.shared.base.utils.EnumGymPal;
 
+import java.time.DayOfWeek;
+import java.util.HashSet;
+
 public class MessageCreateSocio implements IMessage {
     SocioDto socio;
+    HashSet<DayOfWeek> trainingDays;
 
-    public MessageCreateSocio(SocioDto socio) {
+    public MessageCreateSocio(SocioDto socio, HashSet<DayOfWeek> trainingDays) {
         this.socio = socio;
+        this.trainingDays = trainingDays;
     }
 
     @Override
@@ -19,5 +24,9 @@ public class MessageCreateSocio implements IMessage {
 
     public SocioDto getSocio() {
         return socio;
+    }
+
+    public HashSet<DayOfWeek> getTrainingDays() {
+        return trainingDays;
     }
 }

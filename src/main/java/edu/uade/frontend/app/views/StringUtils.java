@@ -1,10 +1,18 @@
 package edu.uade.frontend.app.views;
 
+import edu.uade.backend.app.model.enums.ObjetivoTipo;
 import edu.uade.backend.app.model.enums.Sexo;
 
 public class StringUtils {
     public static String buildString(int checkValid, String prefix, String suffix) {
         if (checkValid > 0) {
+            return prefix + checkValid + suffix;
+        }
+        return "";
+    }
+
+    public static String buildString(ObjetivoTipo checkValid, String prefix, String suffix) {
+        if (checkValid != null) {
             return prefix + checkValid + suffix;
         }
         return "";
@@ -33,6 +41,13 @@ public class StringUtils {
 
     public static String buildString(String checkNotNull, String returnThis) {
         if (validString(checkNotNull)) {
+            return returnThis;
+        }
+        return "";
+    }
+
+    public static String buildString(boolean onCondition, String returnThis) {
+        if (onCondition) {
             return returnThis;
         }
         return "";

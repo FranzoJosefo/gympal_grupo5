@@ -25,6 +25,7 @@ public class Socio extends ComponentBase {
         getMessageBus().subscribe(Register.CREATE_SOCIO, new MessageHandler<>((MessageCreateSocio message) -> {
             socioActual = message.getSocio();
             controller.registrarSocio(socioActual);
+            // TODO: crear rutina usando los trainingDays
         }));
     }
 }
