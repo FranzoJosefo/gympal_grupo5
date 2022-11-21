@@ -1,7 +1,7 @@
 package edu.uade.auth;
 
 public interface IAuthAdapter {
-    public abstract Result doLogin();
-    public abstract Result registerUser();
+    Result doLogin(Credentials creds);
+    Result registerUser(Credentials creds);
 }
 
