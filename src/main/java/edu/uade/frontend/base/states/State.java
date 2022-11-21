@@ -1,7 +1,7 @@
 package edu.uade.frontend.base.states;
 
-import edu.uade.shared.messaging.MessageBus;
-import edu.uade.shared.utils.EnumGymPal;
+import edu.uade.shared.base.messaging.MessageBus;
+import edu.uade.shared.base.utils.EnumGymPal;
 
 import java.util.HashMap;
 

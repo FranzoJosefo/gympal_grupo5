@@ -2,6 +2,7 @@ package edu.uade.frontend.base.input;
 
 import edu.uade.frontend.base.output.ITextOutput;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInputInteger {
@@ -16,7 +17,14 @@ public class UserInputInteger {
         if (message != null && message.length() > 0) {
             console.print(message);
         }
-        int userInput = input.nextInt();
+
+        int userInput;
+        try {
+            userInput = input.nextInt();
+        } catch (InputMismatchException ex) {
+            userInput = min - 1;
+        }
+
         if (userInput < min || userInput > max) {
             if (errorMessage != null && errorMessage.length() > 0) {
                 console.print(errorMessage);

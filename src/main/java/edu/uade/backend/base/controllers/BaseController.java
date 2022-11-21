@@ -1,6 +1,6 @@
 package edu.uade.backend.base.controllers;
 
-import edu.uade.shared.messaging.MessageBus;
+import edu.uade.shared.base.messaging.MessageBus;
 
 public abstract class BaseController {
     MessageBus centroDeMensajes;

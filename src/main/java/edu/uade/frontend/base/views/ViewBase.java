@@ -1,6 +1,6 @@
 package edu.uade.frontend.base.views;
 
-import edu.uade.shared.messaging.MessageBus;
+import edu.uade.shared.base.messaging.MessageBus;
 
 public abstract class ViewBase implements IView {
     MessageBus messageBus;

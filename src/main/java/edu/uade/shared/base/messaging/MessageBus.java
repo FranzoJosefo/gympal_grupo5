@@ -1,6 +1,6 @@
-package edu.uade.shared.messaging;
+package edu.uade.shared.base.messaging;
 
-import edu.uade.shared.utils.EnumGymPal;
+import edu.uade.shared.base.utils.EnumGymPal;
 
 import java.util.ArrayList;
 import java.util.HashMap;

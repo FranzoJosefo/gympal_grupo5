@@ -1,9 +1,9 @@
 package edu.uade.frontend.app.states;
 
 import edu.uade.shared.app.events.Login;
-import edu.uade.shared.messaging.MessageBus;
-import edu.uade.shared.messaging.MessageHandler;
-import edu.uade.shared.utils.EnumGymPal;
+import edu.uade.shared.base.messaging.MessageBus;
+import edu.uade.shared.base.messaging.MessageHandler;
+import edu.uade.shared.base.utils.EnumGymPal;
 import edu.uade.frontend.app.events.Shared;
 import edu.uade.frontend.app.messages.MessageEvent;
 import edu.uade.frontend.base.states.IState;

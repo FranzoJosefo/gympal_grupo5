@@ -1,6 +1,6 @@
 package edu.uade.shared.app.events;
 
-import edu.uade.shared.utils.EnumGymPal;
+import edu.uade.shared.base.utils.EnumGymPal;
 
 public class Login extends EnumGymPal<Integer> {
 

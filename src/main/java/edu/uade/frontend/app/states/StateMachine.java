@@ -1,6 +1,6 @@
 package edu.uade.frontend.app.states;
 
-import edu.uade.shared.messaging.MessageBus;
+import edu.uade.shared.base.messaging.MessageBus;
 import edu.uade.frontend.base.states.IState;
 import edu.uade.frontend.base.states.IStateMachine;
 

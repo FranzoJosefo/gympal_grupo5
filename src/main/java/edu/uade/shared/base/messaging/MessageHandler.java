@@ -1,4 +1,4 @@
-package edu.uade.shared.messaging;
+package edu.uade.shared.base.messaging;
 
 public class MessageHandler<T extends IMessage> implements IMessageHandler {
     private final IExternalHandler<T> externalHandler;

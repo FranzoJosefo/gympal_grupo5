@@ -1,7 +1,7 @@
 package edu.uade.frontend.app.messages;
 
-import edu.uade.shared.messaging.IMessage;
-import edu.uade.shared.utils.EnumGymPal;
+import edu.uade.shared.base.messaging.IMessage;
+import edu.uade.shared.base.utils.EnumGymPal;
 import edu.uade.frontend.app.events.Shared;
 
 public class MessageEvent implements IMessage {

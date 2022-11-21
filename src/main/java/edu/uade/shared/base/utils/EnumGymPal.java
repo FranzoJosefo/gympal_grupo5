@@ -1,4 +1,4 @@
-package edu.uade.shared.utils;
+package edu.uade.shared.base.utils;
 
 public class EnumGymPal<T> {
     private final T valor;
