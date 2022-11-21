@@ -8,5 +8,6 @@ public class Backend extends ComponentBase {
         super(Ids.BACKEND, messageBus);
 
         addComponent(new Login(getMessageBus()));
+        addComponent(new Socio(getMessageBus()));
     }
 }
