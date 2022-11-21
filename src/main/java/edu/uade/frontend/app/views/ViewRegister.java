@@ -42,8 +42,7 @@ public class ViewRegister extends ViewBase {
             errorMessage = null;
         }
 
-        UserInputInteger input = new UserInputInteger(console);
-        menu.chooseOption(input.read("Ingrese la opción deseada:", "Opción incorrecta", 1, menu.optionCount()));
+        InputUtils.chooseOption(console, menu);
     }
 
     void enterUserName() {

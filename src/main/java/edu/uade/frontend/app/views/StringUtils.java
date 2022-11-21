@@ -1,6 +1,29 @@
 package edu.uade.frontend.app.views;
 
+import edu.uade.backend.app.model.enums.Sexo;
+
 public class StringUtils {
+    public static String buildString(int checkValid, String prefix, String suffix) {
+        if (checkValid > 0) {
+            return prefix + checkValid + suffix;
+        }
+        return "";
+    }
+
+    public static String buildString(Sexo checkValid, String prefix, String suffix) {
+        if (checkValid != null) {
+            return prefix + checkValid + suffix;
+        }
+        return "";
+    }
+
+    public static String buildString(float checkValid, String prefix, String suffix) {
+        if (checkValid != 0.0f) {
+            return prefix + checkValid + suffix;
+        }
+        return "";
+    }
+
     public static String buildString(String checkNotNull, String prefix, String suffix) {
         if (validString(checkNotNull)) {
             return prefix + checkNotNull + suffix;

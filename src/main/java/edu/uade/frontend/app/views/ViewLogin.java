@@ -5,7 +5,6 @@ import edu.uade.frontend.app.messages.MessageLoginDetailsIntroduced;
 import edu.uade.frontend.base.menus.MenuBuilder;
 import edu.uade.shared.base.messaging.MessageBus;
 import edu.uade.frontend.app.messages.MessageEvent;
-import edu.uade.frontend.base.input.UserInputInteger;
 import edu.uade.frontend.base.menus.Menu;
 import edu.uade.frontend.base.output.ITextOutput;
 import edu.uade.frontend.base.output.TextOutputConsole;
@@ -32,8 +31,8 @@ public class ViewLogin extends ViewBase {
         menu.show();
         console.print(errorMessage);
         errorMessage = null;
-        UserInputInteger input = new UserInputInteger(console);
-        menu.chooseOption(input.read("Ingrese la opción deseada:", "Opción incorrecta", 1, menu.optionCount()));
+
+        InputUtils.chooseOption(console, menu);
     }
 
     void enterUsername() {
