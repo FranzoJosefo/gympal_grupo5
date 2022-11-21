@@ -6,5 +6,7 @@ import edu.uade.shared.base.messaging.MessageBus;
 public class Backend extends ComponentBase {
     public Backend(MessageBus messageBus) {
         super(Ids.BACKEND, messageBus);
+
+        addComponent(new Login(getMessageBus()));
     }
 }

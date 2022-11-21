@@ -60,6 +60,6 @@ public class ViewLogin extends ViewBase {
     }
 
     public void setErrorMessage(String message) {
-        errorMessage = message;
+        errorMessage = "ERROR: " + message;
     }
 }
