@@ -1,8 +1,9 @@
 package edu.uade.frontend.app.views;
 
+import edu.uade.frontend.app.events.Login;
+import edu.uade.frontend.app.events.Register;
 import edu.uade.frontend.base.menus.MenuBuilder;
 import edu.uade.shared.app.events.General;
-import edu.uade.shared.app.events.Login;
 import edu.uade.shared.base.messaging.MessageBus;
 import edu.uade.frontend.app.messages.MessageEvent;
 import edu.uade.frontend.base.input.UserInputInteger;
@@ -33,11 +34,11 @@ public class ViewMainMenu extends ViewBase {
     }
 
     void login() {
-        getMessageBus().sendMessage(new MessageEvent(Login.Navigation.LOGIN_DETAILS_INPUT_STARTED));
+        getMessageBus().sendMessage(new MessageEvent(Login.LOGIN_DETAILS_INPUT_STARTED));
     }
 
     void register() {
-
+        getMessageBus().sendMessage(new MessageEvent(Register.REGISTER_DETAILS_INPUT_STARTED));
     }
 
     void exit() {

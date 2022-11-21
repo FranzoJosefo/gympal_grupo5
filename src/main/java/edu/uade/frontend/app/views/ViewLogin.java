@@ -1,21 +1,17 @@
 package edu.uade.frontend.app.views;
 
+import edu.uade.frontend.app.events.Login;
 import edu.uade.frontend.app.messages.MessageLoginDetailsIntroduced;
 import edu.uade.frontend.base.menus.MenuBuilder;
-import edu.uade.shared.app.events.Login;
 import edu.uade.shared.base.messaging.MessageBus;
 import edu.uade.frontend.app.messages.MessageEvent;
 import edu.uade.frontend.base.input.UserInputInteger;
-import edu.uade.frontend.base.input.UserInputString;
 import edu.uade.frontend.base.menus.Menu;
 import edu.uade.frontend.base.output.ITextOutput;
 import edu.uade.frontend.base.output.TextOutputConsole;
 import edu.uade.frontend.base.views.ViewBase;
 
 public class ViewLogin extends ViewBase {
-    final int MIN_LENGTH = 4;
-    final int MAX_LENGTH = 30;
-
     ITextOutput console = new TextOutputConsole();
     String userName;
     String password;
@@ -29,9 +25,9 @@ public class ViewLogin extends ViewBase {
     public void show() {
         MenuBuilder builder = new MenuBuilder();
         Menu menu = builder.create("Inicio de sesión", console)
-                .addOption("Ingresar nombre de usuario" + ((userName != null && userName.length() > 0)? " (" + userName + ")" : ""), this::enterUsername)
-                .addOption("Ingresar contraseña" + ((password != null && password.length() > 0)? " (************)" : ""), this::enterPassword)
-                .addOption("Enviar", this::submit)
+                .addOption("Ingresar nombre de usuario" + StringUtils.buildString(userName, " (", ")"), this::enterUsername)
+                .addOption("Ingresar contraseña" + StringUtils.buildString(password, " (" + StringUtils.obfuscate(password) + ")"), this::enterPassword)
+                .addOptionIf(validCredentials(), "Enviar", this::submit)
                 .addOption("Cancelar", this::back).get();
         menu.show();
         console.print(errorMessage);
@@ -41,30 +37,28 @@ public class ViewLogin extends ViewBase {
     }
 
     void enterUsername() {
-        UserInputString input = new UserInputString(console);
-        userName = input.read("Escriba su nombre de usuario:", "Por favor, ingrese entre " + MIN_LENGTH + " y " + MAX_LENGTH + " caracteres.", MIN_LENGTH, MAX_LENGTH);
+        userName = InputUtils.read(console, "Escriba su nombre de usuario:", Configs.MIN_USERNAME_LENGTH, Configs.MAX_USERNAME_LENGTH);
         show();
     }
 
     void enterPassword() {
-        UserInputString input = new UserInputString(console);
-        password = input.read("Escriba su contraseña:", "Por favor, ingrese entre " + MIN_LENGTH + " y " + MAX_LENGTH + " caracteres.", MIN_LENGTH, MAX_LENGTH);
+        password = InputUtils.read(console, "Escriba su contraseña:", Configs.MIN_PASSWORD_LENGTH, Configs.MAX_PASSWORD_LENGTH);
         show();
     }
 
     void submit() {
-        if (userName != null && userName.length() > 0 && password != null && password.length() > 0) {
-            getMessageBus().sendMessage(new MessageLoginDetailsIntroduced(userName, password));
-        } else {
-            setErrorMessage("Por favor, introduzca su usuario y contraseña antes de intentar enviar el formulario");
-        }
+        getMessageBus().sendMessage(new MessageLoginDetailsIntroduced(userName, password));
     }
 
     void back() {
-        getMessageBus().sendMessage(new MessageEvent(Login.Navigation.CANCELLED));
+        getMessageBus().sendMessage(new MessageEvent(Login.CANCELLED));
     }
 
     public void setErrorMessage(String message) {
         errorMessage = "ERROR: " + message;
+    }
+
+    boolean validCredentials() {
+        return StringUtils.validString(userName) && StringUtils.validString(password);
     }
 }

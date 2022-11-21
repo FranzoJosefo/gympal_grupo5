@@ -20,6 +20,13 @@ public class MenuBuilder {
         return this;
     }
 
+    public MenuBuilder addOptionIf(boolean condition, String label, IOptionHandler optionHandler) {
+        if (condition) {
+            return addOption(label, optionHandler);
+        }
+        return this;
+    }
+
     public Menu get() {
         Menu built = building;
         building = null;

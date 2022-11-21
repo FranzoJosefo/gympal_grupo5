@@ -16,11 +16,11 @@ public class StateLoginInProgress extends State {
     public StateLoginInProgress(MessageBus messageBus) {
         super(messageBus);
 
-        getMessageBus().subscribe(Login.Navigation.LOGIN_DETAILS_INTRODUCED, new MessageHandler<>((MessageLoginDetailsIntroduced message) -> {
+        getMessageBus().subscribe(edu.uade.frontend.app.events.Login.LOGIN_DETAILS_INTRODUCED, new MessageHandler<>((MessageLoginDetailsIntroduced message) -> {
             lastLoginDetails = message;
         }));
         getMessageBus().subscribe(Login.SUCCESS, new MessageHandler<>((MessageLoginSuccess message) -> {
-            loginSuccess();
+            getMessageBus().sendMessage(new MessageEvent(message.getId()));
         }));
         getMessageBus().subscribe(Login.FAILED, new MessageHandler<>((MessageLoginFailed message) -> {
             loginFailed();
@@ -34,10 +34,6 @@ public class StateLoginInProgress extends State {
         } else {
             loginFailed();
         }
-    }
-
-    void loginSuccess() {
-        getMessageBus().sendMessage(new MessageEvent(Login.SUCCESS));
     }
 
     void loginFailed() {

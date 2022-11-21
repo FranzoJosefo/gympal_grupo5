@@ -2,7 +2,6 @@ package edu.uade.shared.app;
 
 import edu.uade.backend.app.components.Backend;
 import edu.uade.frontend.app.components.Frontend;
-import edu.uade.frontend.app.events.Shared;
 import edu.uade.frontend.app.messages.MessageEvent;
 import edu.uade.shared.app.events.General;
 import edu.uade.shared.base.components.ComponentBase;
@@ -19,7 +18,7 @@ public class GymPalApp extends ComponentBase {
         addComponent(new Backend(getMessageBus()));
         addComponent(new Frontend(getMessageBus()));
 
-        getMessageBus().subscribe(Shared.EVENT, new MessageHandler<>((MessageEvent message) -> {
+        getMessageBus().subscribe(General.EVENT, new MessageHandler<>((MessageEvent message) -> {
             if (message.getEventId() == General.APPLICATION_EXITING) {
                 running = false;
             }

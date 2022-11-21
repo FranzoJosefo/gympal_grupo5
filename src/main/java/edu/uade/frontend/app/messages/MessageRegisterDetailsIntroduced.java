@@ -1,14 +1,14 @@
 package edu.uade.frontend.app.messages;
 
-import edu.uade.frontend.app.events.Login;
+import edu.uade.frontend.app.events.Register;
 import edu.uade.shared.base.messaging.IMessage;
 import edu.uade.shared.base.utils.EnumGymPal;
 
-public class MessageLoginDetailsIntroduced implements IMessage {
+public class MessageRegisterDetailsIntroduced implements IMessage {
     String userName;
     String password;
 
-    public MessageLoginDetailsIntroduced(String userName, String password) {
+    public MessageRegisterDetailsIntroduced(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }
@@ -23,6 +23,6 @@ public class MessageLoginDetailsIntroduced implements IMessage {
 
     @Override
     public EnumGymPal<Integer> getId() {
-        return Login.LOGIN_DETAILS_INTRODUCED;
+        return Register.REGISTER_DETAILS_INTRODUCED;
     }
 }

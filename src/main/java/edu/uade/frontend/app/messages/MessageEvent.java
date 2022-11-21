@@ -1,8 +1,8 @@
 package edu.uade.frontend.app.messages;
 
+import edu.uade.shared.app.events.General;
 import edu.uade.shared.base.messaging.IMessage;
 import edu.uade.shared.base.utils.EnumGymPal;
-import edu.uade.frontend.app.events.Shared;
 
 public class MessageEvent implements IMessage {
     EnumGymPal<Integer> eventId;
@@ -13,7 +13,7 @@ public class MessageEvent implements IMessage {
 
     @Override
     public EnumGymPal<Integer> getId() {
-        return Shared.EVENT;
+        return General.EVENT;
     }
 
     public EnumGymPal<Integer> getEventId() {
