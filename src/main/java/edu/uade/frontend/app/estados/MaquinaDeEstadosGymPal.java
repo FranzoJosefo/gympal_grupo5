@@ -27,11 +27,10 @@ public class MaquinaDeEstadosGymPal extends MaquinaDeEstados {
     }
 
     void transicion(EnumGymPal<Integer> identificadorEvento) {
-        for (IEstado estado: estadosValidos) {
-            IEstado nuevoEstado = estado.getTransicion(identificadorEvento);
+        if (estadoActual != null) {
+            IEstado nuevoEstado = estadoActual.getTransicion(identificadorEvento);
             if (nuevoEstado != null && estadosValidos.contains(nuevoEstado)) {
                 nuevoEstado.ejecutar();
-                break;
             }
         }
     }
