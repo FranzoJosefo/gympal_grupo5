@@ -1,40 +1,40 @@
 package edu.uade.frontend.base.menues;
 
-import edu.uade.frontend.base.salida.ISalidaTexto;
+import edu.uade.frontend.base.salida.ITextOutput;
 
 import java.util.ArrayList;
 
 public class Menu implements IMenu {
-    ArrayList<IOpcion> opciones = new ArrayList<>();
-    ISalidaTexto salida;
-    String nombre;
+    ArrayList<IOption> options = new ArrayList<>();
+    ITextOutput console;
+    String name;
 
-    public Menu(ISalidaTexto salida, String nombreMenu) {
-        this.salida = salida;
-        nombre = nombreMenu;
+    public Menu(ITextOutput console, String menuName) {
+        this.console = console;
+        name = menuName;
     }
 
     @Override
-    public void agregarOpcion(IOpcion opcion) {
-        opciones.add(opcion);
+    public void addOption(IOption option) {
+        options.add(option);
     }
 
     @Override
-    public void elegirOpcion(int identificador) {
-        for (IOpcion opcion: opciones) {
-            if (opcion.getIdentificador() == identificador) {
-                opcion.procesar();
+    public void chooseOption(int optionId) {
+        for (IOption option: options) {
+            if (option.getId() == optionId) {
+                option.handle();
             }
         }
     }
 
     @Override
-    public void mostrar() {
-        if (nombre != null && nombre.length() > 0) {
-            salida.mostrar(nombre);
+    public void show() {
+        if (name != null && name.length() > 0) {
+            console.print(name);
         }
-        for (IOpcion opcion: opciones) {
-            salida.mostrar("" + opcion.getIdentificador() + " - " + opcion.getNombre());
+        for (IOption option: options) {
+            console.print("" + option.getId() + " - " + option.getName());
         }
     }
 }

@@ -1,15 +1,15 @@
 package edu.uade.backend.base.controllers;
 
-import edu.uade.compartido.mensajeria.CentroDeMensajes;
+import edu.uade.compartido.mensajeria.MessageBus;
 
 public abstract class BaseController {
-    CentroDeMensajes centroDeMensajes;
+    MessageBus centroDeMensajes;
 
-    public BaseController (CentroDeMensajes centroDeMensajes) {
+    public BaseController (MessageBus centroDeMensajes) {
         this.centroDeMensajes = centroDeMensajes;
     }
 
-    public CentroDeMensajes getCentroDeMensajes() {
+    public MessageBus getCentroDeMensajes() {
         return centroDeMensajes;
     }
 

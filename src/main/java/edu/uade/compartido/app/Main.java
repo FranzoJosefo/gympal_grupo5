@@ -1,12 +1,12 @@
 package edu.uade.compartido.app;
 
-import edu.uade.compartido.mensajeria.CentroDeMensajes;
-import edu.uade.frontend.app.estados.MaquinaDeEstadosGymPal;
+import edu.uade.compartido.mensajeria.MessageBus;
+import edu.uade.frontend.app.estados.StateMachineFronted;
 
 public class Main {
     public static void main(String[] args) {
-        CentroDeMensajes centroDeMensajes = new CentroDeMensajes();
-        MaquinaDeEstadosGymPal app = new MaquinaDeEstadosGymPal(centroDeMensajes);
-        app.ejecutar();
+        MessageBus messageBus = new MessageBus();
+        StateMachineFronted app = new StateMachineFronted(messageBus);
+        app.run();
     }
 }
