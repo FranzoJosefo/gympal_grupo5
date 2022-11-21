@@ -1,4 +1,4 @@
 package edu.uade.backend.app.controllers;
 
-public class EjercicioController {
+public class EjercicioController implements IEjercicioProvider {
 }
