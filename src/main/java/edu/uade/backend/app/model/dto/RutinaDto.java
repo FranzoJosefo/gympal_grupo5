@@ -1,0 +1,4 @@
+package edu.uade.backend.app.model.dto;
+
+public class RutinaDto {
+}

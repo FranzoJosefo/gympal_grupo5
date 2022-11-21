@@ -1,5 +1,6 @@
 package edu.uade.backend.app.controllers;
 
+import edu.uade.backend.app.model.dto.ObjetivoDto;
 import edu.uade.backend.app.model.dto.SocioDto;
 import edu.uade.backend.app.model.Socio;
 
@@ -40,6 +41,10 @@ public class SocioController {
 
     public void eliminarSocio(SocioDto socioDto) {
         socio.eliminarSocio(socioDto);
+    }
+
+    public void crearObjetivo(ObjetivoDto objetivoDto) {
+
     }
 
 }

@@ -1,13 +1,19 @@
 package edu.uade.backend.app.model.dto;
 
+import edu.uade.backend.app.model.Trofeo;
 import edu.uade.backend.app.model.enums.Sexo;
+
+import java.util.List;
 
 public class SocioDto {
     String usuario;
     ObjetivoDto objetivo;
     int edad;
-    float peso;
     Sexo sexo;
+
+    List<TrofeoDto> trofeos;
+
+    EstadoFisicoDto estadoFisico;
 
     public String getUsuario() {
         return usuario;
@@ -33,14 +39,6 @@ public class SocioDto {
         this.edad = edad;
     }
 
-    public float getPeso() {
-        return peso;
-    }
-
-    public void setPeso(float peso) {
-        this.peso = peso;
-    }
-
     public Sexo getSexo() {
         return sexo;
     }
@@ -48,4 +46,13 @@ public class SocioDto {
     public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
+
+    public EstadoFisicoDto getEstadoFisico() {
+        return estadoFisico;
+    }
+
+    public void setEstadoFisico(EstadoFisicoDto estadoFisico) {
+        this.estadoFisico = estadoFisico;
+    }
+
 }
