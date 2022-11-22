@@ -10,5 +10,6 @@ public class Backend extends ComponentBase {
         addComponent(new Login(getMessageBus()));
         addComponent(new Socio(getMessageBus()));
         addComponent(new Ejercicio(getMessageBus()));
+        addComponent(new Date(getMessageBus()));
     }
 }
