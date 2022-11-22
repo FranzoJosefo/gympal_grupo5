@@ -21,4 +21,8 @@ public class InstanciaEjercicioDto {
     public void setRepeticionesRealizadas(int repeticionesRealizadas) {
         this.repeticionesRealizadas = repeticionesRealizadas;
     }
+
+    public boolean estaCompleto() {
+        return getRepeticionesRealizadas() >= getEjercicio().getRepeticionesTotales();
+    }
 }

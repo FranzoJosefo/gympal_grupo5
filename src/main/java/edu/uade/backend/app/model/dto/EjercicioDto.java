@@ -58,4 +58,8 @@ public class EjercicioDto {
     public void setPesoAsignado(Float pesoAsignado) {
         this.pesoAsignado = pesoAsignado;
     }
+
+    public int getRepeticionesTotales() {
+        return getCantidadRepeticiones() * getCantidadSeries();
+    }
 }

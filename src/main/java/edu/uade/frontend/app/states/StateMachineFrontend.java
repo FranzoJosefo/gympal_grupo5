@@ -32,6 +32,7 @@ public class StateMachineFrontend extends StateMachine {
         IState stateRegister = new StateRegister(messageBus);
         IState stateRegisterInProgress = new StateRegisterInProgress(messageBus);
         IState stateFillSocioInfo = new StateFillSocioInfo(messageBus);
+        IState stateDashboard = new StateDashboard(messageBus);
 
         stateStartApp.addTransition(edu.uade.frontend.app.events.Login.LOGIN_DETAILS_INPUT_STARTED, stateLogin);
         stateStartApp.addTransition(edu.uade.frontend.app.events.Register.REGISTER_DETAILS_INPUT_STARTED, stateRegister);
@@ -39,6 +40,7 @@ public class StateMachineFrontend extends StateMachine {
         stateLogin.addTransition(edu.uade.frontend.app.events.Login.CANCELLED, stateStartApp);
         stateLogin.addTransition(edu.uade.frontend.app.events.Login.LOGIN_DETAILS_INTRODUCED, stateLoginInProgress);
         stateLoginInProgress.addTransition(Login.FAILED, stateLogin);
+        stateLoginInProgress.addTransition(Login.SUCCESS, stateDashboard);
 
         // Intencional: Login.CANCELLED
         stateRegister.addTransition(edu.uade.frontend.app.events.Login.CANCELLED, stateStartApp);
@@ -46,12 +48,15 @@ public class StateMachineFrontend extends StateMachine {
         stateRegisterInProgress.addTransition(Register.FAILED, stateRegister);
         stateRegisterInProgress.addTransition(Register.SUCCESS, stateFillSocioInfo);
 
+        stateFillSocioInfo.addTransition(Login.SUCCESS, stateDashboard);
+
         registerState(stateStartApp);
         registerState(stateLogin);
         registerState(stateLoginInProgress);
         registerState(stateRegister);
         registerState(stateRegisterInProgress);
         registerState(stateFillSocioInfo);
+        registerState(stateDashboard);
     }
 
     void transition(EnumGymPal<Integer> eventId) {

@@ -53,9 +53,10 @@ public class ViewFillSocioInfo extends ViewBase {
 
     String trainingDaysString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(" (");
+        final String startingPrefix = " (";
+        builder.append(startingPrefix);
         for (DayOfWeek day : trainingDays) {
-            if (builder.length() > 0) {
+            if (builder.length() > startingPrefix.length()) {
                 builder.append(", ");
             }
             builder.append(day.toString());

@@ -3,8 +3,11 @@ package edu.uade.backend.app.components;
 import edu.uade.backend.app.controllers.SocioController;
 import edu.uade.backend.app.events.EjercicioProvider;
 import edu.uade.backend.app.messages.MessageHandEjercicioProvider;
+import edu.uade.backend.app.messages.MessageHandSocio;
 import edu.uade.backend.app.messages.MessageRequestEjercicioProvider;
 import edu.uade.backend.app.model.dto.SocioDto;
+import edu.uade.frontend.app.messages.MessageRequestSocio;
+import edu.uade.frontend.app.messages.MessageSaveSocio;
 import edu.uade.shared.app.events.Login;
 import edu.uade.shared.app.events.Register;
 import edu.uade.shared.app.messages.MessageCreateSocio;
@@ -35,9 +38,18 @@ public class Socio extends ComponentBase {
             getMessageBus().sendMessage(new MessageRequestEjercicioProvider());
         }));
 
+        getMessageBus().subscribe(edu.uade.frontend.app.events.Socio.REQUEST, new MessageHandler<>((MessageRequestSocio message) -> {
+            getMessageBus().sendMessage(new MessageHandSocio(socioActual));
+        }));
+
+        getMessageBus().subscribe(edu.uade.frontend.app.events.Socio.SAVE, new MessageHandler<>((MessageSaveSocio message) -> {
+            controller.modificarSocio(socioActual);
+        }));
+
         getMessageBus().subscribe(EjercicioProvider.RESPONSE, new MessageHandler<>((MessageHandEjercicioProvider message) -> {
             // TODO: crear rutina usando los trainingDays
             // controller.crearRutina(socioActual.getObjetivo().getObjetivoTipo(), trainingDays.toArray(), message.getProvider());
+            getMessageBus().sendMessage(new MessageLoginSuccess(socioActual.getUsuario()));
         }));
     }
 }

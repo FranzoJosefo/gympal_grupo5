@@ -22,4 +22,13 @@ public class EntrenamientoDiaDto {
     public void setDia(DayOfWeek dia) {
         this.dia = dia;
     }
+
+    public boolean estaCompleto() {
+        for (InstanciaEjercicioDto ejercicio : ejerciciosDelDia) {
+            if (!ejercicio.estaCompleto()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
