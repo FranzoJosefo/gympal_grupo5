@@ -1,6 +1,6 @@
 package edu.uade.backend.app.messages;
 
-import edu.uade.backend.app.controllers.IEjercicioProvider;
+import edu.uade.backend.app.externalApis.externalEjercicios.IEjercicioProvider;
 import edu.uade.backend.app.events.EjercicioProvider;
 import edu.uade.shared.base.messaging.IMessage;
 import edu.uade.shared.base.utils.EnumGymPal;

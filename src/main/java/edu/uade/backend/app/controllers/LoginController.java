@@ -1,8 +1,8 @@
 package edu.uade.backend.app.controllers;
 
 import edu.uade.backend.app.model.Credentials;
-import edu.uade.backend.app.auth.GoogleAuthAdapter;
-import edu.uade.backend.app.auth.IAuthAdapter;
+import edu.uade.backend.app.externalApis.auth.GoogleAuthAdapter;
+import edu.uade.backend.app.externalApis.auth.IAuthAdapter;
 import edu.uade.backend.app.model.enums.Result;
 
 public class LoginController {

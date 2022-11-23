@@ -1,5 +1,6 @@
 package edu.uade.backend.app.controllers;
 
+import edu.uade.backend.app.model.Rutina;
 import edu.uade.backend.app.model.dto.ObjetivoDto;
 import edu.uade.backend.app.model.dto.SocioDto;
 import edu.uade.backend.app.model.Socio;
@@ -11,11 +12,6 @@ public class SocioController {
     public SocioController() {
         socio = new Socio();
     }
- //View de Didi
-//    public VentanaPrincipal getMiVentanaPrincipal() {
-//        return miVentanaPrincipal;
-//    }
-
 
     public Socio getSocio() {
         return socio;
@@ -43,8 +39,8 @@ public class SocioController {
         socio.eliminarSocio(socioDto);
     }
 
-    public void crearObjetivo(ObjetivoDto objetivoDto) {
-
+    private Rutina crearRutina() {
+        return new Rutina();
     }
 
 }

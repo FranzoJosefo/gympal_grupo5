@@ -1,4 +1,4 @@
-package edu.uade.backend.app.auth;
+package edu.uade.backend.app.externalApis.auth;
 
 import edu.uade.backend.app.model.enums.Result;
 import edu.uade.backend.app.model.Credentials;
