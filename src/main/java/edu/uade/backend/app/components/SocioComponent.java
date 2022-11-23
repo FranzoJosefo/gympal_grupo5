@@ -1,10 +1,11 @@
 package edu.uade.backend.app.components;
 
 import edu.uade.backend.app.controllers.SocioController;
-import edu.uade.backend.app.events.EjercicioProvider;
-import edu.uade.backend.app.messages.MessageHandEjercicioProvider;
+import edu.uade.backend.app.events.Ejercicio;
+import edu.uade.backend.app.messages.MessageHandEjercicios;
 import edu.uade.backend.app.messages.MessageHandSocio;
-import edu.uade.backend.app.messages.MessageRequestEjercicioProvider;
+import edu.uade.backend.app.messages.MessageRequestEjercicio;
+import edu.uade.backend.app.model.dto.RutinaDto;
 import edu.uade.backend.app.model.dto.SocioDto;
 import edu.uade.frontend.app.messages.MessageRequestSocio;
 import edu.uade.frontend.app.messages.MessageSaveSocio;
@@ -17,6 +18,7 @@ import edu.uade.shared.base.messaging.MessageBus;
 import edu.uade.shared.base.messaging.MessageHandler;
 
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class SocioComponent extends ComponentBase {
@@ -35,7 +37,7 @@ public class SocioComponent extends ComponentBase {
             socioActual = message.getSocio();
             trainingDays = message.getTrainingDays();
             controller.registrarSocio(socioActual);
-            getMessageBus().sendMessage(new MessageRequestEjercicioProvider());
+            getMessageBus().sendMessage(new MessageRequestEjercicio());
         }));
 
         getMessageBus().subscribe(edu.uade.frontend.app.events.Socio.REQUEST, new MessageHandler<>((MessageRequestSocio message) -> {
@@ -46,9 +48,11 @@ public class SocioComponent extends ComponentBase {
             controller.modificarSocio(socioActual);
         }));
 
-        getMessageBus().subscribe(EjercicioProvider.RESPONSE, new MessageHandler<>((MessageHandEjercicioProvider message) -> {
-            // TODO: crear rutina usando los trainingDays
-            // controller.crearRutina(socioActual.getObjetivo().getObjetivoTipo(), trainingDays.toArray(), message.getProvider());
+        getMessageBus().subscribe(Ejercicio.RESPONSE, new MessageHandler<>((MessageHandEjercicios message) -> {
+            RutinaDto rutinaDto = controller.crearRutina(socioActual, new ArrayList<>(trainingDays), message.getEjercicios());
+            socioActual.setRutinaObjetivo(rutinaDto);
+            controller.modificarSocio(socioActual);
+            //Cuando se completa el flujo de registro, debe loguear el usuario automaticamente.
             getMessageBus().sendMessage(new MessageLoginSuccess(socioActual.getUsuario()));
         }));
     }

@@ -1,5 +1,7 @@
 package edu.uade.backend.app.model.dto;
 
+import edu.uade.backend.app.model.Rutina;
+
 import java.util.List;
 
 public class SocioDto {
@@ -41,6 +43,10 @@ public class SocioDto {
 
     public void setEstadoFisico(EstadoFisicoDto estadoFisico) {
         this.estadoFisico = estadoFisico;
+    }
+
+    public void setRutinaObjetivo(RutinaDto rutina) {
+        getObjetivo().setRutina(rutina);
     }
 
 }

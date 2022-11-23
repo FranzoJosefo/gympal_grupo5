@@ -3,7 +3,6 @@ package edu.uade.backend.app.model;
 import edu.uade.backend.app.model.dto.EjercicioDto;
 import edu.uade.backend.app.model.enums.ExigenciaMuscular;
 import edu.uade.backend.app.model.enums.GrupoMuscular;
-
 public class Ejercicio {
     private NivelAerobico nivelAerobico;
     private GrupoMuscular grupoMuscular;

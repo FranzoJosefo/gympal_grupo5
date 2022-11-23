@@ -1,6 +1,7 @@
 package edu.uade.backend.app.controllers;
 
-import edu.uade.backend.app.model.Rutina;
+import edu.uade.backend.app.model.dto.EjercicioDto;
+import edu.uade.backend.app.model.dto.RutinaDto;
 import edu.uade.backend.app.model.dto.SocioDto;
 import edu.uade.backend.app.model.Socio;
 
@@ -41,8 +42,10 @@ public class SocioController {
         socio.eliminarSocio(socioDto);
     }
 
-    private Rutina crearRutina(SocioDto socioDto, List<DayOfWeek> diasElegidos) {
-        return new Rutina();
+    public RutinaDto crearRutina(SocioDto socioDto, List<DayOfWeek> diasElegidos, List<EjercicioDto> ejercicioList) {
+        //TODO usar EntrenamientoFactoryStrategy para traerme los List<EntrenamientoDia> y setearselo a la rutina.
+
+        return new RutinaDto();
     }
 
 }

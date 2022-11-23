@@ -16,7 +16,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-public class GsonDataBase { //TODO todo esto se deberia llamar DB.
+public class GsonDataBase {
 
 	private GsonDataBase() {
 	}
@@ -63,7 +63,6 @@ public class GsonDataBase { //TODO todo esto se deberia llamar DB.
 				// scores.add((Score) o);
 				return dtos;
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
