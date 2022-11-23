@@ -14,8 +14,8 @@ public class ValoresIdealesComponent extends ComponentBase {
     public ValoresIdealesComponent(MessageBus messageBus) {
         super(Ids.VALORES_IDEALES, messageBus);
 
-        getMessageBus().subscribe(ValoresIdeales.REQUEST, new MessageHandler<>((MessageRequestValoresIdeales message) -> {
+        getMessageBus().subscribe(ValoresIdeales.REQUEST, (MessageRequestValoresIdeales message) -> {
             getMessageBus().sendMessage(new MessageHandValoresIdeales(controller.calcularEstadoFisicoIdeal(message.getEstadoFisicoActual())));
-        }));
+        });
     }
 }

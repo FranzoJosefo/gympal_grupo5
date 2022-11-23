@@ -16,10 +16,9 @@ public class EjercicioComponent extends ComponentBase {
     public EjercicioComponent(MessageBus messageBus) {
         super(Ids.EJERCICIO, messageBus);
 
-        getMessageBus().subscribe(edu.uade.gympal.backend.events.Ejercicio.REQUEST, new MessageHandler<>((MessageRequestEjercicio message) -> {
+        getMessageBus().subscribe(edu.uade.gympal.backend.events.Ejercicio.REQUEST, (MessageRequestEjercicio message) -> {
             List<EjercicioDto> ejerciciosResponse = controller.fetchEjercicios();
             getMessageBus().sendMessage(new MessageHandEjercicios(ejerciciosResponse));
-        }));
-
+        });
     }
 }

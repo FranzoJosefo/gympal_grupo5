@@ -15,16 +15,15 @@ public class StateMachineFrontend extends StateMachine {
     public StateMachineFrontend(MessageBus messageBus) {
         super(messageBus);
 
-        MessageHandler<MessageEvent> eventMessageHandler = new MessageHandler<MessageEvent>((MessageEvent message) -> {
+        messageBus.subscribe(General.EVENT, (MessageEvent message) -> {
             transition(message.getEventId());
         });
-        messageBus.subscribe(General.EVENT, eventMessageHandler);
-        messageBus.subscribe(edu.uade.gympal.frontend.events.Login.LOGIN_DETAILS_INTRODUCED, new MessageHandler<>((MessageLoginDetailsIntroduced message) -> {
+        messageBus.subscribe(edu.uade.gympal.frontend.events.Login.LOGIN_DETAILS_INTRODUCED, (MessageLoginDetailsIntroduced message) -> {
             transition(message.getId());
-        }));
-        messageBus.subscribe(edu.uade.gympal.frontend.events.Register.REGISTER_DETAILS_INTRODUCED, new MessageHandler<>((MessageRegisterDetailsIntroduced message) -> {
+        });
+        messageBus.subscribe(edu.uade.gympal.frontend.events.Register.REGISTER_DETAILS_INTRODUCED, (MessageRegisterDetailsIntroduced message) -> {
             transition(message.getId());
-        }));
+        });
 
         IState stateStartApp = new StateApplicationStart(messageBus);
         IState stateLogin = new StateLogin(messageBus);

@@ -29,13 +29,13 @@ public class ViewDashboard extends ViewBase {
 
     public ViewDashboard(MessageBus messageBus) {
         super(messageBus);
-        getMessageBus().subscribe(Date.RESPONSE, new MessageHandler<>((MessageHandDate message) -> currentDate = message.getDate()));
+        getMessageBus().subscribe(Date.RESPONSE, (MessageHandDate message) -> currentDate = message.getDate());
     }
 
     @Override
     public void show() {
         getMessageBus().sendMessage(new MessageRequestDate());
-        socioResponseSubscriptionId = getMessageBus().subscribe(Socio.RESPONSE, new MessageHandler<>(this::onSocioResponse));
+        socioResponseSubscriptionId = getMessageBus().subscribe(Socio.RESPONSE, this::onSocioResponse);
         getMessageBus().sendMessage(new MessageRequestSocio());
         getMessageBus().removeSubscription(Socio.RESPONSE, socioResponseSubscriptionId);
 

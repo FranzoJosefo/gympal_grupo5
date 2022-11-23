@@ -16,15 +16,15 @@ public class StateRegisterInProgress extends State {
     public StateRegisterInProgress(MessageBus messageBus) {
         super(messageBus);
 
-        getMessageBus().subscribe(edu.uade.gympal.frontend.events.Register.REGISTER_DETAILS_INTRODUCED, new MessageHandler<>((MessageRegisterDetailsIntroduced message) -> {
+        getMessageBus().subscribe(edu.uade.gympal.frontend.events.Register.REGISTER_DETAILS_INTRODUCED, (MessageRegisterDetailsIntroduced message) -> {
             lastRegisterDetails = message;
-        }));
-        getMessageBus().subscribe(Register.SUCCESS, new MessageHandler<>((MessageRegisterSuccess message) -> {
+        });
+        getMessageBus().subscribe(Register.SUCCESS, (MessageRegisterSuccess message) -> {
             getMessageBus().sendMessage(new MessageEvent(message.getId()));
-        }));
-        getMessageBus().subscribe(Register.FAILED, new MessageHandler<>((MessageRegisterFailed message) -> {
+        });
+        getMessageBus().subscribe(Register.FAILED, (MessageRegisterFailed message) -> {
             registerFailed();
-        }));
+        });
     }
 
     @Override

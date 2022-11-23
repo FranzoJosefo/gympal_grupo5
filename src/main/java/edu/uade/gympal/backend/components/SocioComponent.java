@@ -29,31 +29,31 @@ public class SocioComponent extends ComponentBase {
     public SocioComponent(MessageBus messageBus) {
         super(Ids.SOCIO, messageBus);
 
-        getMessageBus().subscribe(Login.SUCCESS, new MessageHandler<>((MessageLoginSuccess message) -> {
+        getMessageBus().subscribe(Login.SUCCESS, (MessageLoginSuccess message) -> {
             socioActual = controller.buscarSocio(message.getUserName());
-        }));
+        });
 
-        getMessageBus().subscribe(Register.CREATE_SOCIO, new MessageHandler<>((MessageCreateSocio message) -> {
+        getMessageBus().subscribe(Register.CREATE_SOCIO, (MessageCreateSocio message) -> {
             socioActual = message.getSocio();
             trainingDays = message.getTrainingDays();
             controller.registrarSocio(socioActual);
             getMessageBus().sendMessage(new MessageRequestEjercicio());
-        }));
+        });
 
-        getMessageBus().subscribe(edu.uade.gympal.frontend.events.Socio.REQUEST, new MessageHandler<>((MessageRequestSocio message) -> {
+        getMessageBus().subscribe(edu.uade.gympal.frontend.events.Socio.REQUEST, (MessageRequestSocio message) -> {
             getMessageBus().sendMessage(new MessageHandSocio(socioActual));
-        }));
+        });
 
-        getMessageBus().subscribe(edu.uade.gympal.frontend.events.Socio.SAVE, new MessageHandler<>((MessageSaveSocio message) -> {
+        getMessageBus().subscribe(edu.uade.gympal.frontend.events.Socio.SAVE, (MessageSaveSocio message) -> {
             controller.modificarSocio(socioActual);
-        }));
+        });
 
-        getMessageBus().subscribe(Ejercicio.RESPONSE, new MessageHandler<>((MessageHandEjercicios message) -> {
+        getMessageBus().subscribe(Ejercicio.RESPONSE, (MessageHandEjercicios message) -> {
             RutinaDto rutinaDto = controller.crearRutina(socioActual, new ArrayList<>(trainingDays), message.getEjercicios());
             socioActual.setRutinaObjetivo(rutinaDto);
             controller.modificarSocio(socioActual);
             //Cuando se completa el flujo de registro, debe loguear el usuario automaticamente.
             getMessageBus().sendMessage(new MessageLoginSuccess(socioActual.getUsuario()));
-        }));
+        });
     }
 }

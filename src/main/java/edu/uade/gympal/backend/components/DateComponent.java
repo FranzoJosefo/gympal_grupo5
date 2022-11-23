@@ -12,8 +12,8 @@ public class DateComponent extends ComponentBase {
     public DateComponent(MessageBus messageBus) {
         super(Ids.DATE, messageBus);
 
-        getMessageBus().subscribe(edu.uade.gympal.frontend.events.Date.REQUEST, new MessageHandler<>((MessageRequestDate message) -> {
+        getMessageBus().subscribe(edu.uade.gympal.frontend.events.Date.REQUEST, (MessageRequestDate message) -> {
             getMessageBus().sendMessage(new MessageHandDate(LocalDate.now()));
-        }));
+        });
     }
 }

@@ -14,9 +14,9 @@ public class StateFillSocioInfo extends State {
     public StateFillSocioInfo(MessageBus messageBus) {
         super(messageBus);
 
-        getMessageBus().subscribe(Login.SUCCESS, new MessageHandler<>((MessageLoginSuccess message) -> {
+        getMessageBus().subscribe(Login.SUCCESS, (MessageLoginSuccess message) -> {
             getMessageBus().sendMessage(new MessageEvent(message.getId()));
-        }));
+        });
 
         view = new ViewFillSocioInfo(getMessageBus());
     }

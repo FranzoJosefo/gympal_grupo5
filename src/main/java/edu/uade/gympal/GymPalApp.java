@@ -18,11 +18,11 @@ public class GymPalApp extends ComponentBase {
         addComponent(new BackendComponent(getMessageBus()));
         addComponent(new Frontend(getMessageBus()));
 
-        getMessageBus().subscribe(General.EVENT, new MessageHandler<>((MessageEvent message) -> {
+        getMessageBus().subscribe(General.EVENT, (MessageEvent message) -> {
             if (message.getEventId() == General.APPLICATION_EXITING) {
                 running = false;
             }
-        }));
+        });
     }
 
     @Override

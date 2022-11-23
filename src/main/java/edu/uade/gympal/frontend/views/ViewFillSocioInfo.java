@@ -29,10 +29,10 @@ public class ViewFillSocioInfo extends ViewBase {
     public ViewFillSocioInfo(MessageBus messageBus) {
         super(messageBus);
 
-        getMessageBus().subscribe(Register.SUCCESS, new MessageHandler<>((MessageRegisterSuccess message) -> {
+        getMessageBus().subscribe(Register.SUCCESS, (MessageRegisterSuccess message) -> {
             socio = new SocioDto();
             socio.setUsuario(message.getUserName());
-        }));
+        });
     }
 
     @Override

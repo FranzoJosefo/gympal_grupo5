@@ -13,9 +13,9 @@ public class StateRegister extends State {
     public StateRegister(MessageBus messageBus) {
         super(messageBus);
 
-        getMessageBus().subscribe(Register.FAILED, new MessageHandler<>((MessageRegisterFailed message) -> {
+        getMessageBus().subscribe(Register.FAILED, (MessageRegisterFailed message) -> {
             registerFailed = true;
-        }));
+        });
         view = new ViewRegister(getMessageBus());
     }
 

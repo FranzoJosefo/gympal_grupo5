@@ -16,15 +16,15 @@ public class StateLoginInProgress extends State {
     public StateLoginInProgress(MessageBus messageBus) {
         super(messageBus);
 
-        getMessageBus().subscribe(edu.uade.gympal.frontend.events.Login.LOGIN_DETAILS_INTRODUCED, new MessageHandler<>((MessageLoginDetailsIntroduced message) -> {
+        getMessageBus().subscribe(edu.uade.gympal.frontend.events.Login.LOGIN_DETAILS_INTRODUCED, (MessageLoginDetailsIntroduced message) -> {
             lastLoginDetails = message;
-        }));
-        getMessageBus().subscribe(Login.SUCCESS, new MessageHandler<>((MessageLoginSuccess message) -> {
+        });
+        getMessageBus().subscribe(Login.SUCCESS, (MessageLoginSuccess message) -> {
             getMessageBus().sendMessage(new MessageEvent(message.getId()));
-        }));
-        getMessageBus().subscribe(Login.FAILED, new MessageHandler<>((MessageLoginFailed message) -> {
+        });
+        getMessageBus().subscribe(Login.FAILED, (MessageLoginFailed message) -> {
             loginFailed();
-        }));
+        });
     }
 
     @Override

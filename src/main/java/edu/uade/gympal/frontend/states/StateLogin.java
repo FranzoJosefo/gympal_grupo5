@@ -14,9 +14,9 @@ public class StateLogin extends State {
     public StateLogin(MessageBus messageBus) {
         super(messageBus);
 
-        getMessageBus().subscribe(Login.FAILED, new MessageHandler<>((MessageLoginFailed message) -> {
+        getMessageBus().subscribe(Login.FAILED, (MessageLoginFailed message) -> {
             loginFailed = true;
-        }));
+        });
         view = new ViewLogin(getMessageBus());
     }
 

@@ -16,19 +16,19 @@ public class LoginComponent extends ComponentBase {
     public LoginComponent(MessageBus messageBus) {
         super(Ids.LOGIN, messageBus);
 
-        getMessageBus().subscribe(edu.uade.gympal.shared.events.Login.TRY_LOGIN, new MessageHandler<>((MessageTryLogin message) -> {
+        getMessageBus().subscribe(edu.uade.gympal.shared.events.Login.TRY_LOGIN, (MessageTryLogin message) -> {
             Credentials creds = new Credentials();
             creds.setUser(message.getUserName());
             creds.setPwd(message.getPassword());
             tryLogin(creds);
-        }));
+        });
 
-        getMessageBus().subscribe(Register.TRY_REGISTER, new MessageHandler<>((MessageTryRegister message) -> {
+        getMessageBus().subscribe(Register.TRY_REGISTER, (MessageTryRegister message) -> {
             Credentials creds = new Credentials();
             creds.setUser(message.getUserName());
             creds.setPwd(message.getPassword());
             tryRegister(creds);
-        }));
+        });
     }
 
     void tryLogin(Credentials credentials) {
