@@ -10,6 +10,15 @@ public class EjercicioDto {
     private int cantidadSeries;
     private int cantidadRepeticiones;
     private Float pesoAsignado;
+    private int duracionRepeticionSegundos;
+
+    public int getDuracionRepeticionSegundos() {
+        return duracionRepeticionSegundos;
+    }
+
+    public void setDuracionRepeticionSegundos(int duracionRepeticionSegundos) {
+        this.duracionRepeticionSegundos = duracionRepeticionSegundos;
+    }
 
     public NivelAerobicoDto getNivelAerobico() {
         return nivelAerobico;

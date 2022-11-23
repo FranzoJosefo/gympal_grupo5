@@ -89,6 +89,7 @@ public class Ejercicio {
         dto.setPesoAsignado(this.getPesoAsignado());
         dto.setCantidadSeries(this.getCantidadSeries());
         dto.setCantidadRepeticiones(this.getCantidadRepeticiones());
+        dto.setDuracionRepeticionSegundos(this.getDuracionRepeticionSegundos());
         return dto;
     }
 }
