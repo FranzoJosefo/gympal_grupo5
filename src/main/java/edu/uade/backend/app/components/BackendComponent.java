@@ -5,11 +5,12 @@ import edu.uade.shared.base.messaging.MessageBus;
 
 public class BackendComponent extends ComponentBase {
     public BackendComponent(MessageBus messageBus) {
-        super(IdsComponent.BACKEND, messageBus);
+        super(Ids.BACKEND, messageBus);
 
         addComponent(new LoginComponent(getMessageBus()));
         addComponent(new SocioComponent(getMessageBus()));
         addComponent(new EjercicioComponent(getMessageBus()));
         addComponent(new DateComponent(getMessageBus()));
+        addComponent(new ValoresIdealesComponent(getMessageBus()));
     }
 }

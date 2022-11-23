@@ -14,7 +14,7 @@ public class EjercicioComponent extends ComponentBase {
     EjercicioController controller = new EjercicioController();
 
     public EjercicioComponent(MessageBus messageBus) {
-        super(IdsComponent.EJERCICIO, messageBus);
+        super(Ids.EJERCICIO, messageBus);
 
         getMessageBus().subscribe(edu.uade.backend.app.events.Ejercicio.REQUEST, new MessageHandler<>((MessageRequestEjercicio message) -> {
             List<EjercicioDto> ejerciciosResponse = controller.fetchEjercicios();

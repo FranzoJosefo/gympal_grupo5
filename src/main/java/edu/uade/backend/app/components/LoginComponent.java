@@ -14,7 +14,7 @@ public class LoginComponent extends ComponentBase {
     LoginController controller = new LoginController();
 
     public LoginComponent(MessageBus messageBus) {
-        super(IdsComponent.LOGIN, messageBus);
+        super(Ids.LOGIN, messageBus);
 
         getMessageBus().subscribe(edu.uade.shared.app.events.Login.TRY_LOGIN, new MessageHandler<>((MessageTryLogin message) -> {
             Credentials creds = new Credentials();

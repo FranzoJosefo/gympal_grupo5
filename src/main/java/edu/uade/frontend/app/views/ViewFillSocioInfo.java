@@ -95,11 +95,22 @@ public class ViewFillSocioInfo extends ViewBase {
         show();
     }
 
+    String buildSexOptionsString(String separator) {
+        StringBuilder builder = new StringBuilder();
+        for (Sexo sex : Sexo.values()) {
+            if (builder.length() > 0 && StringUtils.validString(separator)) {
+                builder.append(separator);
+            }
+            builder.append(sex.toString());
+        }
+        return builder.toString();
+    }
+
     void selectSex() {
         EstadoFisicoDto estadoFisico = getEstadoFisico();
-        String sex = InputUtils.read(console, "Escriba su sexo biológico (M/F):", 1, 1);
-        while (!"MF".contains(sex)) {
-            console.print("Opción inválida; introduzca M o F");
+        String sex = InputUtils.read(console, "Escriba su sexo biológico (" + buildSexOptionsString("/") + "):", 1, 1);
+        while (!buildSexOptionsString(null).contains(sex)) {
+            console.print("Opción inválida; introduzca " + buildSexOptionsString(" o "));
             sex = InputUtils.read(console, null, 1, 1);
         }
         estadoFisico.setSexo(Sexo.valueOf(sex));
