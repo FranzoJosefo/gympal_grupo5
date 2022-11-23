@@ -3,6 +3,10 @@ package edu.uade.gympal.backend.model;
 import edu.uade.gympal.backend.model.dto.EjercicioDto;
 import edu.uade.gympal.backend.model.enums.ExigenciaMuscular;
 import edu.uade.gympal.backend.model.enums.GrupoMuscular;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ejercicio {
     private NivelAerobico nivelAerobico;
     private GrupoMuscular grupoMuscular;
@@ -90,5 +94,23 @@ public class Ejercicio {
         dto.setCantidadRepeticiones(this.getCantidadRepeticiones());
         dto.setDuracionRepeticionSegundos(this.getDuracionRepeticionSegundos());
         return dto;
+    }
+
+    public static List<Ejercicio> ejerciciosDtoToEjercicios(List<EjercicioDto> ejercicioDtos) {
+        List<Ejercicio> ejercicios = new ArrayList<>();
+        for(EjercicioDto ejercicioDto : ejercicioDtos) {
+            Ejercicio ejercicio = new Ejercicio();
+            ejercicio.setCantidadRepeticiones(ejercicioDto.getCantidadRepeticiones());
+            ejercicio.setCantidadSeries(ejercicioDto.getCantidadSeries());
+            ejercicio.setDuracionRepeticionSegundos(ejercicioDto.getDuracionRepeticionSegundos());
+            ejercicio.setGrupoMuscular(ejercicioDto.getGrupoMuscular());
+            NivelAerobico nivelAerobico = new NivelAerobico();
+            nivelAerobico.setNivel(ejercicioDto.getNivelAerobico().getNivel());
+            ejercicio.setNivelAerobico(nivelAerobico);
+            ejercicio.setExigenciaMuscular(ejercicioDto.getExigenciaMuscular());
+            ejercicio.setPesoAsignado(ejercicioDto.getPesoAsignado());
+            ejercicios.add(ejercicio);
+        }
+        return ejercicios;
     }
 }

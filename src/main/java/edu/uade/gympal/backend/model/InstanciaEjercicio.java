@@ -2,6 +2,9 @@ package edu.uade.gympal.backend.model;
 
 import edu.uade.gympal.backend.model.dto.InstanciaEjercicioDto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InstanciaEjercicio {
     private Ejercicio ejercicio;
     private int repeticionesRealizadas;
@@ -39,6 +42,16 @@ public class InstanciaEjercicio {
         dto.setEjercicio(getEjercicio().toDto());
         dto.setRepeticionesRealizadas(getRepeticionesRealizadas());
         return dto;
+    }
+
+    public static List<InstanciaEjercicioDto> convertInstanciaEjercicioListToDto(List<InstanciaEjercicio> instanciaEjercicioList) {
+        List<InstanciaEjercicioDto> instanciaEjercicioDtoList = new ArrayList<>();
+        for (InstanciaEjercicio instanciaEjercicio : instanciaEjercicioList) {
+            InstanciaEjercicioDto instanciaEjercicioDto = new InstanciaEjercicioDto();
+            instanciaEjercicioDto.setEjercicio(instanciaEjercicio.getEjercicio().toDto());
+            instanciaEjercicioDtoList.add(instanciaEjercicioDto);
+        }
+        return instanciaEjercicioDtoList;
     }
 
 }

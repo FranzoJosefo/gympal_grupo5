@@ -103,7 +103,7 @@ public class ViewDashboard extends ViewBase {
             float repeticionesTotales = ejercicio.getEjercicio().getCantidadRepeticiones() * ejercicio.getEjercicio().getCantidadSeries();
             if (repeticionesTotales > 0.0f) {
                 builder.append(" (");
-                builder.append(((float) ejercicio.getRepeticionesRealizadas() / repeticionesTotales) * 100.0f);
+                builder.append(Math.min(100, ((float) ejercicio.getRepeticionesRealizadas() / repeticionesTotales) * 100.0f));
                 builder.append("% completo)");
             }
         }

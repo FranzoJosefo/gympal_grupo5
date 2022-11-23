@@ -15,7 +15,6 @@ import edu.uade.gympal.shared.messages.MessageCreateSocio;
 import edu.uade.gympal.shared.messages.MessageLoginSuccess;
 import edu.uade.gympal.shared.base.components.ComponentBase;
 import edu.uade.gympal.shared.base.messaging.MessageBus;
-import edu.uade.gympal.shared.base.messaging.MessageHandler;
 
 import java.time.DayOfWeek;
 import java.util.ArrayList;
@@ -46,6 +45,12 @@ public class SocioComponent extends ComponentBase {
 
         getMessageBus().subscribe(edu.uade.gympal.frontend.events.Socio.SAVE, (MessageSaveSocio message) -> {
             controller.modificarSocio(socioActual);
+            //TODO no se llego a hacer esto,
+            // pero el disenño es lo suficiente escalable para poder hacerlo facilmente con un poco mas de tiempo y devs :)
+            //Cuando se actualiza al Socio (por ejemplo porque ingreso data de entrenamientos terminados).
+            //Check Objetivos cumplidos. request EstadoFisico (checkea balanza externa) EstadoFisicoComponent
+            //On Response de estadoFisico, lo actualiza y pide valores Ideales a ValoresIdealesComponent
+            //ValoresIdealesComponent response y llamamos a controller.checkObjetivoCumplido SocioController checkea objetivoCumplido
         });
 
         getMessageBus().subscribe(Ejercicio.RESPONSE, (MessageHandEjercicios message) -> {

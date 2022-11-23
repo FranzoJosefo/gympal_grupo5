@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class EntrenamientoStrategy implements IEntrenamientoStrategy {
+public abstract class EntrenamientoStrategy implements IEntrenamientoStrategy {
 
     IEjercicioFilterPredicate filterPredicate;
     int minutoMax;

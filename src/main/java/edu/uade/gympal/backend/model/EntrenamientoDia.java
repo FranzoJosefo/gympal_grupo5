@@ -39,4 +39,15 @@ public class EntrenamientoDia {
         dto.setEjerciciosDelDia(ejerciciosDelDiaDto);
         return dto;
     }
+
+    public static List<EntrenamientoDiaDto> convertEntrenamientoDiaListToDto(List<EntrenamientoDia> entrenamientoDiaList) {
+        List<EntrenamientoDiaDto> entrenamientoDiaDtoList = new ArrayList<>();
+        for (EntrenamientoDia entrenamientoDia : entrenamientoDiaList) {
+            EntrenamientoDiaDto entrenamientoDiaDto = new EntrenamientoDiaDto();
+            entrenamientoDiaDto.setDia(entrenamientoDia.getDia());
+            entrenamientoDiaDto.setEjerciciosDelDia(InstanciaEjercicio.convertInstanciaEjercicioListToDto(entrenamientoDia.getEjerciciosDelDia()));
+            entrenamientoDiaDtoList.add(entrenamientoDiaDto);
+        }
+        return entrenamientoDiaDtoList;
+    }
 }
