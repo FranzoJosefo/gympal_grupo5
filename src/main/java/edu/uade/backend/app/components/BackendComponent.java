@@ -11,5 +11,6 @@ public class BackendComponent extends ComponentBase {
         addComponent(new SocioComponent(getMessageBus()));
         addComponent(new EjercicioComponent(getMessageBus()));
         addComponent(new DateComponent(getMessageBus()));
+        addComponent(new ValoresIdealesComponent(getMessageBus()));
     }
 }
