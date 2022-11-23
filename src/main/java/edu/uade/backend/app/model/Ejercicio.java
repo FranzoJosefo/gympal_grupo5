@@ -11,10 +11,22 @@ public class Ejercicio {
     private int cantidadSeries;
     private int cantidadRepeticiones;
     private Float pesoAsignado;
+    private int duracionRepeticionSegundos;
 
+    public int getDuracionRepeticionSegundos() {
+        return duracionRepeticionSegundos;
+    }
+
+    public void setDuracionRepeticionSegundos(int duracionRepeticionSegundos) {
+        this.duracionRepeticionSegundos = duracionRepeticionSegundos;
+    }
 
     public NivelAerobico getNivelAerobico() {
         return nivelAerobico;
+    }
+
+    public int getNivelAerobicoValue() {
+        return getNivelAerobico().getNivel();
     }
 
     public void setNivelAerobico(NivelAerobico nivelAerobico) {
@@ -63,6 +75,10 @@ public class Ejercicio {
 
     public int repeticionesTotales() {
         return cantidadRepeticiones * cantidadSeries;
+    }
+
+    public int getTiempoTotalEjercicio() {
+        return ((cantidadRepeticiones * duracionRepeticionSegundos) * cantidadSeries) / 60;
     }
 
     public EjercicioDto toDto() {

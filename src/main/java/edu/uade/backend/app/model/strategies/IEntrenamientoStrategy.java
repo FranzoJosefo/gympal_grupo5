@@ -7,7 +7,7 @@ import java.time.DayOfWeek;
 import java.util.List;
 
 public interface IEntrenamientoStrategy {
-    final static int CANT_SEMANAS = 4;
+    int CANT_SEMANAS = 4;
     public abstract List<EntrenamientoDia> getEntrenamientos(List<DayOfWeek> diasDeSemana, List<Ejercicio> ejercicios);
 
 }
