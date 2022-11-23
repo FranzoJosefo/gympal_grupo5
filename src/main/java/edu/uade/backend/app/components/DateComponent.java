@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 public class DateComponent extends ComponentBase {
     public DateComponent(MessageBus messageBus) {
-        super(IdsComponent.DATE, messageBus);
+        super(Ids.DATE, messageBus);
 
         getMessageBus().subscribe(edu.uade.frontend.app.events.Date.REQUEST, new MessageHandler<>((MessageRequestDate message) -> {
             getMessageBus().sendMessage(new MessageHandDate(LocalDate.now()));

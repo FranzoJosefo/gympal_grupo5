@@ -25,7 +25,7 @@ public class SocioComponent extends ComponentBase {
     HashSet<DayOfWeek> trainingDays;
 
     public SocioComponent(MessageBus messageBus) {
-        super(IdsComponent.SOCIO, messageBus);
+        super(Ids.SOCIO, messageBus);
 
         getMessageBus().subscribe(Login.SUCCESS, new MessageHandler<>((MessageLoginSuccess message) -> {
             socioActual = controller.buscarSocio(message.getUserName());

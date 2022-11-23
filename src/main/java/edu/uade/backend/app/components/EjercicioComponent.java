@@ -12,7 +12,7 @@ public class EjercicioComponent extends ComponentBase {
     EjercicioController controller = new EjercicioController();
 
     public EjercicioComponent(MessageBus messageBus) {
-        super(IdsComponent.EJERCICIO, messageBus);
+        super(Ids.EJERCICIO, messageBus);
 
         getMessageBus().subscribe(EjercicioProvider.REQUEST, new MessageHandler<>((MessageRequestEjercicioProvider message) -> {
             getMessageBus().sendMessage(new MessageHandEjercicioProvider(controller));
