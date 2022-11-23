@@ -6,7 +6,6 @@ import edu.uade.frontend.base.menus.MenuBuilder;
 import edu.uade.shared.app.events.General;
 import edu.uade.shared.base.messaging.MessageBus;
 import edu.uade.frontend.app.messages.MessageEvent;
-import edu.uade.frontend.base.input.UserInputInteger;
 import edu.uade.frontend.base.menus.Menu;
 import edu.uade.frontend.base.output.ITextOutput;
 import edu.uade.frontend.base.output.TextOutputConsole;

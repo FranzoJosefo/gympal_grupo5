@@ -1,5 +1,6 @@
 package edu.uade.frontend.app.views;
 
+import edu.uade.frontend.base.input.UserInputFloat;
 import edu.uade.frontend.base.input.UserInputInteger;
 import edu.uade.frontend.base.input.UserInputString;
 import edu.uade.frontend.base.menus.Menu;
@@ -13,6 +14,11 @@ public class InputUtils {
 
     public static int readInt(ITextOutput console, String prompt, int min, int max) {
         UserInputInteger input = new UserInputInteger(console);
+        return input.read(prompt, "Por favor, ingrese entre " + min + " y " + max + " caracteres.", min, max);
+    }
+
+    public static float readFloat(ITextOutput console, String prompt, float min, float max) {
+        UserInputFloat input = new UserInputFloat(console);
         return input.read(prompt, "Por favor, ingrese entre " + min + " y " + max + " caracteres.", min, max);
     }
 

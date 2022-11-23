@@ -3,7 +3,6 @@ package edu.uade.frontend.app.views;
 import edu.uade.frontend.app.events.Login;
 import edu.uade.frontend.app.messages.MessageEvent;
 import edu.uade.frontend.app.messages.MessageRegisterDetailsIntroduced;
-import edu.uade.frontend.base.input.UserInputInteger;
 import edu.uade.frontend.base.menus.Menu;
 import edu.uade.frontend.base.menus.MenuBuilder;
 import edu.uade.frontend.base.output.ITextOutput;
