@@ -57,8 +57,7 @@ public class ViewDashboard extends ViewBase {
         } else {
             builder.create("No posee entrenamientos para el día de hoy!", console);
         }
-        Menu menu = builder.addOption("Actualizar estado físico", this::updateEstadoFisico)
-                .addOption("Salir", () -> getMessageBus().sendMessage(new MessageEvent(General.APPLICATION_EXITING))).get();
+        Menu menu = builder.addOption("Salir", () -> getMessageBus().sendMessage(new MessageEvent(General.APPLICATION_EXITING))).get();
         menu.show();
 
         InputUtils.chooseOption(console, menu);
@@ -113,7 +112,7 @@ public class ViewDashboard extends ViewBase {
     }
 
     EntrenamientoDiaDto getEntrenamientoForDay(RutinaDto rutina, LocalDate date) {
-        if (rutina != null) {
+        if (rutina != null && rutina.getEntrenamientos() != null) {
             for (EntrenamientoDiaDto entrenamiento : rutina.getEntrenamientos()) {
                 if (entrenamiento.getDia() == date.getDayOfWeek() && !entrenamiento.estaCompleto()) {
                     return entrenamiento;
@@ -131,33 +130,5 @@ public class ViewDashboard extends ViewBase {
             }
         }
         return null;
-    }
-
-    void updateEstadoFisico() {
-        EstadoFisicoDto estadoFisico = socio.getEstadoFisico();
-        MenuBuilder builder = new MenuBuilder();
-        Menu menu = builder.create("Actualización del estado físico", console)
-                .addOption("Editar peso (actual: " + estadoFisico.getPeso() + ")", this::enterWeight)
-                .addOption("Editar masa muscular (actual: " + estadoFisico.getMasaMuscular() + ")", this::enterMasaMuscular)
-                .addOption("Editar grasa corporal (actual: " + estadoFisico.getGrasaCorporal() + ")", this::enterGrasaCorporal)
-                .addOption("Atras", null).get();
-        menu.show();
-
-        InputUtils.chooseOption(console, menu);
-    }
-
-    void enterWeight() {
-        socio.getEstadoFisico().setPeso(InputUtils.readFloat(console, "Ingrese su peso actual:", Configs.MIN_WEIGHT, Configs.MAX_WEIGHT));
-        updateEstadoFisico();
-    }
-
-    void enterMasaMuscular() {
-        socio.getEstadoFisico().setMasaMuscular(InputUtils.readFloat(console, "Ingrese su masa muscular actual:", 0.0f, Configs.MAX_WEIGHT));
-        updateEstadoFisico();
-    }
-
-    void enterGrasaCorporal() {
-        socio.getEstadoFisico().setGrasaCorporal(InputUtils.readFloat(console, "Ingrese su grasa corporal actual:", 0.0f, Configs.MAX_WEIGHT));
-        updateEstadoFisico();
     }
 }

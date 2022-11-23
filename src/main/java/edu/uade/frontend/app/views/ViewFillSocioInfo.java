@@ -198,7 +198,7 @@ public class ViewFillSocioInfo extends ViewBase {
     }
 
     boolean allDataComplete() {
-        return socio.getEdad() > 0 && socio.getEstadoFisico().getSexo() != null && socio.getEstadoFisico() != null && socio.getEstadoFisico().getPeso() > 0 && getObjetivo().getObjetivoTipo() != null && trainingDays.size() > 0;
+        return socio.getEdad() > 0 && socio.getEstadoFisico() != null && socio.getEstadoFisico().getSexo() != null  && socio.getEstadoFisico().getPeso() > 0 && getObjetivo().getObjetivoTipo() != null && trainingDays.size() > 0;
     }
 
     ObjetivoDto getObjetivo() {

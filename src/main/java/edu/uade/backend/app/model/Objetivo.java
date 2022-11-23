@@ -10,7 +10,7 @@ public class Objetivo {
     private Rutina rutina;
     private ObjetivoTipo objetivoTipo;
     private Boolean objetivoCumplido;
-    private Float pesoInicial;
+    private Float pesoInicial = 0f;
 
     public Rutina getRutina() {
         return rutina;

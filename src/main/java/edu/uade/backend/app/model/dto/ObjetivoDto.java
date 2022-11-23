@@ -7,7 +7,7 @@ public class ObjetivoDto {
     private RutinaDto rutina;
     private ObjetivoTipo objetivoTipo;
     private Boolean objetivoCumplido;
-    private Float pesoInicial;
+    private Float pesoInicial = 0f;
 
     public RutinaDto getRutina() {
         return rutina;

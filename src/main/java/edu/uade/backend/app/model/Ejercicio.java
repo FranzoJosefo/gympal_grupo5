@@ -9,7 +9,7 @@ public class Ejercicio {
     private ExigenciaMuscular exigenciaMuscular;
     private int cantidadSeries;
     private int cantidadRepeticiones;
-    private Float pesoAsignado;
+    private Float pesoAsignado = 0f;
     private int duracionRepeticionSegundos;
 
     public int getDuracionRepeticionSegundos() {

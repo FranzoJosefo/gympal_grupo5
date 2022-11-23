@@ -3,11 +3,11 @@ package edu.uade.backend.app.model.dto;
 import edu.uade.backend.app.model.enums.Sexo;
 
 public class EstadoFisicoDto {
-    private Float peso;
-    private Float masaMuscular;
-    private Float grasaCorporal;
+    private Float peso = 0f;
+    private Float masaMuscular = 0f;
+    private Float grasaCorporal = 0f;
     private Sexo sexo;
-    private Float altura;
+    private Float altura = 0f;
 
     public Sexo getSexo() {
         return sexo;
