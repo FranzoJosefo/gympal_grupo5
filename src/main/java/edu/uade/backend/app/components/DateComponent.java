@@ -8,9 +8,9 @@ import edu.uade.shared.base.messaging.MessageHandler;
 
 import java.time.LocalDate;
 
-public class Date extends ComponentBase {
-    public Date(MessageBus messageBus) {
-        super(Ids.DATE, messageBus);
+public class DateComponent extends ComponentBase {
+    public DateComponent(MessageBus messageBus) {
+        super(IdsComponent.DATE, messageBus);
 
         getMessageBus().subscribe(edu.uade.frontend.app.events.Date.REQUEST, new MessageHandler<>((MessageRequestDate message) -> {
             getMessageBus().sendMessage(new MessageHandDate(LocalDate.now()));

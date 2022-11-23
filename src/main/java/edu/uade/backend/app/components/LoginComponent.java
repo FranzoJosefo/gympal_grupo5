@@ -10,11 +10,11 @@ import edu.uade.shared.base.messaging.IMessage;
 import edu.uade.shared.base.messaging.MessageBus;
 import edu.uade.shared.base.messaging.MessageHandler;
 
-public class Login extends ComponentBase {
+public class LoginComponent extends ComponentBase {
     LoginController controller = new LoginController();
 
-    public Login(MessageBus messageBus) {
-        super(Ids.LOGIN, messageBus);
+    public LoginComponent(MessageBus messageBus) {
+        super(IdsComponent.LOGIN, messageBus);
 
         getMessageBus().subscribe(edu.uade.shared.app.events.Login.TRY_LOGIN, new MessageHandler<>((MessageTryLogin message) -> {
             Credentials creds = new Credentials();

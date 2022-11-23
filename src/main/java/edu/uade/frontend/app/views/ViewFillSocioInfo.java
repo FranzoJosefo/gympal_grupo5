@@ -40,7 +40,8 @@ public class ViewFillSocioInfo extends ViewBase {
         MenuBuilder builder = new MenuBuilder();
         Menu menu = builder.create("Bienvenido/a, " + socio.getUsuario(), console)
                 .addOption("Ingresar edad" + StringUtils.buildString(socio.getEdad(), " (", ")"), this::enterAge)
-                .addOption("Ingresar sexo biológico" + StringUtils.buildString(socio.getSexo(), " (", ")"), this::selectSex)
+                .addOption("Ingresar sexo biológico" + StringUtils.buildString(extractSexo(), " (", ")"), this::selectSex)
+                .addOption("Ingresar altura" + StringUtils.buildString(extractHeight(), " (", ")"), this::enterHeight)
                 .addOption("Ingresar peso actual" + StringUtils.buildString(extractWeight(), " (", ")"), this::enterWeight)
                 .addOption("Elija su objetivo" + StringUtils.buildString(getObjetivo().getObjetivoTipo(), " (", ")"), this::selectObjetivo)
                 .addOption("Días de entrenamiento" + StringUtils.buildString(trainingDays.size() > 0, trainingDaysString()), this::selectTrainingDays)
@@ -73,25 +74,50 @@ public class ViewFillSocioInfo extends ViewBase {
         return 0.0f;
     }
 
+    float extractHeight() {
+        EstadoFisicoDto estado = socio.getEstadoFisico();
+        if (estado != null) {
+            return estado.getAltura();
+        }
+        return 0.0f;
+    }
+
+    Sexo extractSexo() {
+        EstadoFisicoDto estado = socio.getEstadoFisico();
+        if (estado != null) {
+            return estado.getSexo();
+        }
+        return null;
+    }
+
     void enterAge() {
         socio.setEdad(InputUtils.readInt(console, "Escriba su edad actual:", Configs.MIN_AGE, Configs.MAX_AGE));
         show();
     }
 
     void selectSex() {
+        EstadoFisicoDto estadoFisico = getEstadoFisico();
         String sex = InputUtils.read(console, "Escriba su sexo biológico (M/F):", 1, 1);
         while (!"MF".contains(sex)) {
             console.print("Opción inválida; introduzca M o F");
             sex = InputUtils.read(console, null, 1, 1);
         }
-        socio.setSexo(Sexo.valueOf(sex));
+        estadoFisico.setSexo(Sexo.valueOf(sex));
+        socio.setEstadoFisico(estadoFisico);
+        show();
+    }
+
+    void enterHeight() {
+        EstadoFisicoDto estadoFisico = getEstadoFisico();
+        estadoFisico.setAltura(InputUtils.readFloat(console, "Escriba su altura actual:", Configs.MIN_HEIGHT, Configs.MAX_HEIGHT));
+        socio.setEstadoFisico(estadoFisico);
         show();
     }
 
     void enterWeight() {
         EstadoFisicoDto estadoFisico = getEstadoFisico();
         ObjetivoDto objetivo = getObjetivo();
-        estadoFisico.setPeso((float)InputUtils.readInt(console, "Escriba su peso actual:", Configs.MIN_WEIGHT, Configs.MAX_WEIGHT));
+        estadoFisico.setPeso(InputUtils.readFloat(console, "Escriba su peso actual:", Configs.MIN_WEIGHT, Configs.MAX_WEIGHT));
         objetivo.setPesoInicial(estadoFisico.getPeso());
         socio.setEstadoFisico(estadoFisico);
         socio.setObjetivo(objetivo);
@@ -161,7 +187,7 @@ public class ViewFillSocioInfo extends ViewBase {
     }
 
     boolean allDataComplete() {
-        return socio.getEdad() > 0 && socio.getSexo() != null && socio.getEstadoFisico() != null && socio.getEstadoFisico().getPeso() > 0 && getObjetivo().getObjetivoTipo() != null && trainingDays.size() > 0;
+        return socio.getEdad() > 0 && socio.getEstadoFisico().getSexo() != null && socio.getEstadoFisico() != null && socio.getEstadoFisico().getPeso() > 0 && getObjetivo().getObjetivoTipo() != null && trainingDays.size() > 0;
     }
 
     ObjetivoDto getObjetivo() {

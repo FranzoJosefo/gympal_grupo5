@@ -1,11 +1,30 @@
 package edu.uade.backend.app.model;
 
 import edu.uade.backend.app.model.dto.EstadoFisicoDto;
+import edu.uade.backend.app.model.enums.Sexo;
 
 public class EstadoFisico {
     private Float peso;
     private Float masaMuscular;
     private Float grasaCorporal;
+    private Sexo sexo;
+    private Float altura;
+
+    public Float getAltura() {
+        return altura;
+    }
+
+    public void setAltura(Float altura) {
+        this.altura = altura;
+    }
+
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
 
     public Float getPeso() {
         return peso;
@@ -36,6 +55,8 @@ public class EstadoFisico {
         dto.setGrasaCorporal(getGrasaCorporal());
         dto.setPeso(getPeso());
         dto.setMasaMuscular(getMasaMuscular());
+        dto.setSexo(getSexo());
+        dto.setAltura(getAltura());
         return dto;
     }
 }

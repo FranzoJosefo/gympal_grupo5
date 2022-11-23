@@ -9,8 +9,6 @@ public class Socio{
     String usuario;
     Objetivo objetivo;
     int edad;
-    Sexo sexo;
-
     EstadoFisico estadoFisico;
 
     public String getUsuario() {
@@ -35,14 +33,6 @@ public class Socio{
 
     public void setEdad(int edad) {
         this.edad = edad;
-    }
-
-    public Sexo getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(Sexo sexo) {
-        this.sexo = sexo;
     }
 
     public EstadoFisico getEstadoFisico() {
@@ -77,7 +67,6 @@ public class Socio{
         SocioDto dto = new SocioDto();
         dto.setEstadoFisico(getEstadoFisico().toDto());
         dto.setEdad(getEdad());
-        dto.setSexo(getSexo());
         dto.setUsuario(getUsuario());
         dto.setObjetivo(getObjetivo().toDto());
         return dto;

@@ -1,9 +1,11 @@
 package edu.uade.backend.app.controllers;
 
 import edu.uade.backend.app.model.Rutina;
-import edu.uade.backend.app.model.dto.ObjetivoDto;
 import edu.uade.backend.app.model.dto.SocioDto;
 import edu.uade.backend.app.model.Socio;
+
+import java.time.DayOfWeek;
+import java.util.List;
 
 public class SocioController {
 
@@ -39,7 +41,7 @@ public class SocioController {
         socio.eliminarSocio(socioDto);
     }
 
-    private Rutina crearRutina() {
+    private Rutina crearRutina(SocioDto socioDto, List<DayOfWeek> diasElegidos) {
         return new Rutina();
     }
 

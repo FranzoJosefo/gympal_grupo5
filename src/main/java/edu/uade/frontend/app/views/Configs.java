@@ -11,5 +11,8 @@ public class Configs {
     public static final int MAX_AGE = 120;
 
     public static final int MIN_WEIGHT = 15;
-    public static final int MAX_WEIGHT = 1500;
+    public static final int MAX_WEIGHT = 500;
+
+    public static final float MIN_HEIGHT = 1.0f;
+    public static final float MAX_HEIGHT = 2.6f;
 }

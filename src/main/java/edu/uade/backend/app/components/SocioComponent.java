@@ -19,13 +19,13 @@ import edu.uade.shared.base.messaging.MessageHandler;
 import java.time.DayOfWeek;
 import java.util.HashSet;
 
-public class Socio extends ComponentBase {
+public class SocioComponent extends ComponentBase {
     SocioController controller = new SocioController();
     SocioDto socioActual;
     HashSet<DayOfWeek> trainingDays;
 
-    public Socio(MessageBus messageBus) {
-        super(Ids.SOCIO, messageBus);
+    public SocioComponent(MessageBus messageBus) {
+        super(IdsComponent.SOCIO, messageBus);
 
         getMessageBus().subscribe(Login.SUCCESS, new MessageHandler<>((MessageLoginSuccess message) -> {
             socioActual = controller.buscarSocio(message.getUserName());

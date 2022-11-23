@@ -8,11 +8,11 @@ import edu.uade.shared.base.components.ComponentBase;
 import edu.uade.shared.base.messaging.MessageBus;
 import edu.uade.shared.base.messaging.MessageHandler;
 
-public class Ejercicio extends ComponentBase {
+public class EjercicioComponent extends ComponentBase {
     EjercicioController controller = new EjercicioController();
 
-    public Ejercicio(MessageBus messageBus) {
-        super(Ids.EJERCICIO, messageBus);
+    public EjercicioComponent(MessageBus messageBus) {
+        super(IdsComponent.EJERCICIO, messageBus);
 
         getMessageBus().subscribe(EjercicioProvider.REQUEST, new MessageHandler<>((MessageRequestEjercicioProvider message) -> {
             getMessageBus().sendMessage(new MessageHandEjercicioProvider(controller));

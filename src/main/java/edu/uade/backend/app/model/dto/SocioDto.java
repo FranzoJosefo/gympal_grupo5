@@ -1,15 +1,11 @@
 package edu.uade.backend.app.model.dto;
 
-import edu.uade.backend.app.model.Trofeo;
-import edu.uade.backend.app.model.enums.Sexo;
-
 import java.util.List;
 
 public class SocioDto {
     String usuario;
     ObjetivoDto objetivo;
     int edad;
-    Sexo sexo;
 
     List<TrofeoDto> trofeos;
 
@@ -37,14 +33,6 @@ public class SocioDto {
 
     public void setEdad(int edad) {
         this.edad = edad;
-    }
-
-    public Sexo getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(Sexo sexo) {
-        this.sexo = sexo;
     }
 
     public EstadoFisicoDto getEstadoFisico() {

@@ -1,9 +1,29 @@
 package edu.uade.backend.app.model.dto;
 
+import edu.uade.backend.app.model.enums.Sexo;
+
 public class EstadoFisicoDto {
     private Float peso;
     private Float masaMuscular;
     private Float grasaCorporal;
+    private Sexo sexo;
+    private Float altura;
+
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
+
+    public Float getAltura() {
+        return altura;
+    }
+
+    public void setAltura(Float altura) {
+        this.altura = altura;
+    }
 
     public Float getPeso() {
         return peso;
