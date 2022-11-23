@@ -9,6 +9,7 @@ import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class EntrenamientoStrategy implements IEntrenamientoStrategy {
 
@@ -25,36 +26,25 @@ public class EntrenamientoStrategy implements IEntrenamientoStrategy {
     @Override
     public List<EntrenamientoDia> getEntrenamientos(List<DayOfWeek> diasDeSemanaElegidos, List<Ejercicio> ejercicios) {
         List<EntrenamientoDia> entrenamientos = new ArrayList<>();
-        //Primero me quedo solo con los ejercicios que cumlpen con las reglas de Bajar de Peso.
+        // Primero me quedo solo con los ejercicios que cumlpen con las reglas de Bajar de Peso.
         ejercicios = getEjerciciosByPredicate(ejercicios, filterPredicate);
 
-        //Despues me aseguro de tener suficientes para 4 semanas (no importa si los repito)
+        // Despues me aseguro de tener suficientes para 4 semanas (no importa si los repito)
         for (int i = CANT_SEMANAS; i > 0; i--) { //Nivel Rutina - 4 Semanas
-
-            //Unicamente agrego los dias que el usuario eligio.
+            // Unicamente agrego los dias que el usuario eligio.
             for (DayOfWeek day : diasDeSemanaElegidos) {
+                List<InstanciaEjercicio> ejerciciosInstanciados = new ArrayList<>();
+                int currentEjercicioIndex = addEjercicioRandom(ejercicios, ejerciciosInstanciados, minutoMin, 0);
+                addEjercicioRandom(ejercicios, ejerciciosInstanciados, minutoMax + 1, currentEjercicioIndex);
+
                 EntrenamientoDia entrenamientoDia = new EntrenamientoDia();
                 entrenamientoDia.setDia(day);
-
-                List<InstanciaEjercicio> ejerciciosInstanciados = new ArrayList<>();
-
-                int minutosAcumulados = 0;
-                int count = 0;
-                while (minutosAcumulados < minutoMin && count < ejercicios.size()) {
-                    minutosAcumulados += addEjercicioRandom(ejercicios, ejerciciosInstanciados);
-                    count++;
-                }
-                while (minutosAcumulados < minutoMax + 1 && count < ejercicios.size()) {
-                    minutosAcumulados += addEjercicioRandom(ejercicios, ejerciciosInstanciados);
-                    count++;
-                }
                 entrenamientoDia.setEjerciciosDelDia(ejerciciosInstanciados);
                 entrenamientos.add(entrenamientoDia);
             }
         }
 
         return entrenamientos;
-
     }
 
     /**
@@ -63,38 +53,36 @@ public class EntrenamientoStrategy implements IEntrenamientoStrategy {
      * Porque si llegara a usarlo en un contexto Async, Java no tendria manera de asegurarse de que sea ese el caso.
      */
 
-    private int addEjercicioRandom(List<Ejercicio> ejercicios, List<InstanciaEjercicio> ejerciciosInstanciados) {
+    private int addEjercicioRandom(List<Ejercicio> ejercicios, List<InstanciaEjercicio> ejerciciosInstanciados, int bound, int searchStartIndex) {
         int minutosAcumulados = 0;
-        for (GrupoMuscular grupo : GrupoMuscular.values()) {
-            List<Ejercicio> shuffledList = getEjerciciosByGrupoMuscular(ejercicios, grupo);
-            if (shuffledList.size() > 0) {
-                Collections.shuffle(shuffledList);
-                InstanciaEjercicio instanciaEjercicio = new InstanciaEjercicio();
-                instanciaEjercicio.setEjercicio(shuffledList.get(0));
-                if (!(minutosAcumulados + instanciaEjercicio.getEjercicio().getTiempoTotalEjercicio() > minutoMax)) {
-                    ejerciciosInstanciados.add(instanciaEjercicio);
-                }
-                minutosAcumulados += instanciaEjercicio.getEjercicio().getTiempoTotalEjercicio();
-            }
-
+        for (InstanciaEjercicio ejercicio : ejerciciosInstanciados) {
+            minutosAcumulados += ejercicio.getEjercicio().getTiempoTotalEjercicio();
         }
-        return minutosAcumulados;
+
+        while (minutosAcumulados < bound && searchStartIndex < ejercicios.size()) {
+            for (GrupoMuscular grupo : GrupoMuscular.values()) {
+                AtomicReference<GrupoMuscular> grupoMuscular = new AtomicReference<>(grupo);
+                List<Ejercicio> shuffledList = getEjerciciosByPredicate(ejercicios, (Ejercicio ejercicio) -> ejercicio.getGrupoMuscular() == grupoMuscular.get());
+                if (shuffledList.size() > 0) {
+                    Collections.shuffle(shuffledList);
+                    InstanciaEjercicio instanciaEjercicio = new InstanciaEjercicio();
+                    instanciaEjercicio.setEjercicio(shuffledList.get(0));
+                    if (!(minutosAcumulados + instanciaEjercicio.getEjercicio().getTiempoTotalEjercicio() > minutoMax)) {
+                        ejerciciosInstanciados.add(instanciaEjercicio);
+                    }
+                    minutosAcumulados += instanciaEjercicio.getEjercicio().getTiempoTotalEjercicio();
+                }
+            }
+            searchStartIndex++;
+        }
+
+        return searchStartIndex;
     }
 
     static List<Ejercicio> getEjerciciosByPredicate(List<Ejercicio> ejercicios, IEjercicioFilterPredicate predicate) {
         List<Ejercicio> newEjercicioList = new ArrayList<>();
         for (Ejercicio curEjercicio : ejercicios) {
             if (predicate.meetsCriteria(curEjercicio)) {
-                newEjercicioList.add(curEjercicio);
-            }
-        }
-        return newEjercicioList;
-    }
-
-    static List<Ejercicio> getEjerciciosByGrupoMuscular(List<Ejercicio> ejercicios, GrupoMuscular grupo) {
-        List<Ejercicio> newEjercicioList = new ArrayList<>();
-        for (Ejercicio curEjercicio : ejercicios) {
-            if (curEjercicio.getGrupoMuscular() == grupo) {
                 newEjercicioList.add(curEjercicio);
             }
         }
