@@ -6,11 +6,11 @@ import edu.uade.backend.app.model.Credentials;
 public class GoogleAuthAdapter implements IAuthAdapter{
     @Override
     public Result doLogin(Credentials creds) {
-        return null;
+        return Result.SUCCESS;
     }
 
     @Override
     public Result registerUser(Credentials creds) {
-        return null;
+        return Result.SUCCESS;
     }
 }
